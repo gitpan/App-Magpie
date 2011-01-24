@@ -44,19 +44,19 @@
    "provides" : {
       "App::Magpie" : {
          "file" : "lib/App/Magpie.pm",
-         "version" : "1.110240"
+         "version" : "1.110241"
       },
       "App::Magpie::App" : {
          "file" : "lib/App/Magpie/App.pm",
-         "version" : "1.110240"
+         "version" : "1.110241"
       },
       "App::Magpie::App::Command" : {
          "file" : "lib/App/Magpie/App/Command.pm",
-         "version" : "1.110240"
+         "version" : "1.110241"
       },
       "App::Magpie::App::Command::bswait" : {
          "file" : "lib/App/Magpie/App/Command/bswait.pm",
-         "version" : "1.110240"
+         "version" : "1.110241"
       }
    },
    "release_status" : "stable",
@@ -72,7 +72,7 @@
          "web" : "http://github.com/jquelin/app-magpie"
       }
    },
-   "version" : "1.110240",
+   "version" : "1.110241",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

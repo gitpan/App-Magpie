@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::bswait;
 BEGIN {
-  $App::Magpie::App::Command::bswait::VERSION = '1.110240';
+  $App::Magpie::App::Command::bswait::VERSION = '1.110241';
 }
 # ABSTRACT: pause according to build-system recommendations
 
@@ -51,7 +51,7 @@ sub execute {
     my $response = $ua->head('http://pkgsubmit.mageia.org/');
     die $response->status_line unless $response->is_success;
 
-    my $sleep = $response->header( "x-bs-throttle" )+10;
+    my $sleep = $response->header( "x-bs-throttle" );
 
     say $sleep    if $opts->{display};
     sleep($sleep) if $opts->{sleep};
@@ -68,7 +68,7 @@ App::Magpie::App::Command::bswait - pause according to build-system recommendati
 
 =head1 VERSION
 
-version 1.110240
+version 1.110241
 
 =head1 DESCRIPTION
 
