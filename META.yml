@@ -19,16 +19,16 @@ name: App-Magpie
 provides:
   App::Magpie:
     file: lib/App/Magpie.pm
-    version: 1.110241
+    version: 1.110280
   App::Magpie::App:
     file: lib/App/Magpie/App.pm
-    version: 1.110241
+    version: 1.110280
   App::Magpie::App::Command:
     file: lib/App/Magpie/App/Command.pm
-    version: 1.110241
+    version: 1.110280
   App::Magpie::App::Command::bswait:
     file: lib/App/Magpie/App/Command/bswait.pm
-    version: 1.110241
+    version: 1.110280
 requires:
   App::Cmd::Setup: 0
   FindBin: 0
@@ -39,7 +39,7 @@ resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=App-Magpie
   homepage: http://search.cpan.org/dist/App-Magpie/
   repository: git://github.com/jquelin/app-magpie.git
-version: 1.110241
+version: 1.110280
 x_Dist_Zilla:
   plugins:
     -
