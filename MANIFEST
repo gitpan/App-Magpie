@@ -11,6 +11,7 @@ lib/App/Magpie.pm
 lib/App/Magpie/App.pm
 lib/App/Magpie/App/Command.pm
 lib/App/Magpie/App/Command/bswait.pm
+lib/App/Magpie/App/Command/checkout.pm
 t/00-compile.t
 t/000-report-versions-tiny.t
 t/release-has-version.t

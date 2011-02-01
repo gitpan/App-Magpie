@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::bswait;
 BEGIN {
-  $App::Magpie::App::Command::bswait::VERSION = '1.110280';
+  $App::Magpie::App::Command::bswait::VERSION = '1.110320';
 }
 # ABSTRACT: pause according to build-system recommendations
 
@@ -34,7 +34,7 @@ sub opt_spec {
     my $self = shift;
     return (
         [],
-        [ 'display|d=s' => "text to display with --verbose" ],
+        [ 'display|d=s' => "text to display with --verbose", { default=>"sleeping %d seconds\n" } ],
         [ 'nosleep|n!'  => "don't sleep" ],
         [ 'verbose|v!'  => "display time to wait" ],
     );
@@ -43,9 +43,7 @@ sub opt_spec {
 sub execute {
     my ($self, $opts, $args) = @_;
 
-    $opts->{display} //= "sleeping %d seconds\n";
-    $opts->{nosleep} //= 0;
-    $opts->{verbose} //= 0;
+    # allow user-defined eol
     $opts->{display} =~ s/\\n/\n/g;
 
     my $ua = LWP::UserAgent->new;
@@ -72,7 +70,7 @@ App::Magpie::App::Command::bswait - pause according to build-system recommendati
 
 =head1 VERSION
 
-version 1.110280
+version 1.110320
 
 =head1 DESCRIPTION
 
