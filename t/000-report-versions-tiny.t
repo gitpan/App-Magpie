@@ -53,9 +53,14 @@ eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::Temp','any version') };
 eval { $v .= pmver('FindBin','any version') };
 eval { $v .= pmver('LWP::UserAgent','any version') };
+eval { $v .= pmver('Log::Dispatchouli','any version') };
 eval { $v .= pmver('Module::Build','0.3601') };
-eval { $v .= pmver('Path::Class','any version') };
+eval { $v .= pmver('Moose','any version') };
+eval { $v .= pmver('MooseX::Has::Sugar','any version') };
+eval { $v .= pmver('Parse::CPAN::Meta','1.4401') };
+eval { $v .= pmver('Path::Class','0.22') };
 eval { $v .= pmver('Test::More','0.88') };
+eval { $v .= pmver('Text::Padding','any version') };
 
 
 

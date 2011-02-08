@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::checkout;
 BEGIN {
-  $App::Magpie::App::Command::checkout::VERSION = '1.110320';
+  $App::Magpie::App::Command::checkout::VERSION = '1.110390';
 }
 # ABSTRACT: check-out or update a given package
 
@@ -34,34 +34,24 @@ sub opt_spec {
     my $self = shift;
     return (
         [],
-        [ 'directory|d=s' => "directory where to check out", { default => "." } ],
-        [ 'quiet|q'       => "be quiet on checkout operations",                 ],
+        [ 'directory|d=s' => "directory where to check out"    ],
         [ 'shell|s'       => "display Bourne shell commands to execute to change directory" ],
+        [],
+        $self->verbose_options,
     );
 }
 
 sub execute {
     my ($self, $opts, $args) = @_;
 
-    # fetch package to be checked out
+    # sanity check
     my $pkg = shift @$args;
     $self->usage_error( "A package should be specified." )
         unless defined $pkg;
 
-    # set up redirect depending on quiet mode
-    my $redirect = $opts->{quiet} ? "/dev/null" : "&2";
-
-    # check out the package, or update the local checkout
-    my $dir    = dir( $opts->{directory} );
-    my $pkgdir = $dir->subdir( $pkg );
-    $dir->mkpath unless -d $dir;
-    if ( -d $pkgdir ) {
-        chdir $pkgdir;
-        system "mgarepo up >$redirect";
-    } else {
-        chdir $dir;
-        system "mgarepo co $pkg >$redirect";
-    }
+    # do the checkout
+    $self->log_init($opts);
+    my $pkgdir = $self->magpie->checkout($pkg, $opts->{directory});
 
     # display command to execute if shell mode
     say "cd $pkgdir" if $opts->{shell};
@@ -78,7 +68,7 @@ App::Magpie::App::Command::checkout - check-out or update a given package
 
 =head1 VERSION
 
-version 1.110320
+version 1.110390
 
 =head1 SYNOPSIS
 
@@ -101,7 +91,7 @@ C<eval> the result of this command, to go directly in the fresh
 check-out directory. In that case, you may want to add the following to
 your F<~/.bashrc>:
 
-    function cco() { eval $(magpie co -q -s $*); }
+    function cco() { eval $(magpie co -d ~/rpm/cauldron -q -s $*); }
 
 =head1 AUTHOR
 

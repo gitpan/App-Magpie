@@ -20,7 +20,7 @@ my %module_build_args = (
     'Jerome Quelin <jquelin@gmail.com>'
   ],
   'dist_name' => 'App-Magpie',
-  'dist_version' => '1.110320',
+  'dist_version' => '1.110390',
   'license' => 'perl',
   'module_name' => 'App::Magpie',
   'recommends' => {},
@@ -29,7 +29,12 @@ my %module_build_args = (
     'App::Cmd::Setup' => '0',
     'FindBin' => '0',
     'LWP::UserAgent' => '0',
-    'Path::Class' => '0',
+    'Log::Dispatchouli' => '0',
+    'Moose' => '0',
+    'MooseX::Has::Sugar' => '0',
+    'Parse::CPAN::Meta' => '1.4401',
+    'Path::Class' => '0.22',
+    'Text::Padding' => '0',
     'perl' => '5.012'
   },
   'script_files' => [
