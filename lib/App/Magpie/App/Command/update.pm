@@ -10,20 +10,24 @@ use 5.012;
 use strict;
 use warnings;
 
-package App::Magpie::App::Command::fixspec;
+package App::Magpie::App::Command::update;
 BEGIN {
-  $App::Magpie::App::Command::fixspec::VERSION = '1.110410';
+  $App::Magpie::App::Command::update::VERSION = '1.110410';
 }
-# ABSTRACT: update a spec file to match some policies
+# ABSTRACT: update a perl module to its latest version
 
 use App::Magpie::App -command;
 
 
 # -- public methods
 
+sub command_names { qw{ update refresh }; }
+
 sub description {
-"Update a spec file from a perl module package, and make sure it follows
-a list of various policies. Also update the list of build prereqs."
+
+"Update a perl module package to its latest version, try to rebuild it,
+commit and submit if successful."
+
 }
 
 sub opt_spec {
@@ -37,7 +41,7 @@ sub opt_spec {
 sub execute {
     my ($self, $opts, $args) = @_;
     $self->log_init($opts);
-    $self->magpie->fixspec;
+    $self->magpie->update;
 }
 
 1;
@@ -47,7 +51,7 @@ sub execute {
 
 =head1 NAME
 
-App::Magpie::App::Command::fixspec - update a spec file to match some policies
+App::Magpie::App::Command::update - update a perl module to its latest version
 
 =head1 VERSION
 
@@ -56,20 +60,20 @@ version 1.110410
 =head1 SYNOPSIS
 
     $ eval $( magpie co -s perl-Foo-Bar )
-    $ magpie fixspec
+    $ magpie update
 
     # to get list of available options
-    $ magpie help fixspec
+    $ magpie help update
 
 =head1 DESCRIPTION
 
-This command will update a spec file from a perl module package, and
-make sure it follows a list of various policies. It will also update the
-list of build prereqs, according to F<META.yml> (or F<META.json>)
-shipped with the distribution.
+This command will update a perl module package to its latest version,
+try to build it locally, commit and submit if successful.
 
 Note that this command will abort if it finds that the spec is too much
-outdated (eg, not using C<%perl_convert_version>)
+outdated (eg, not using C<%define upstream_version>).
+
+This command requires a C<CPAN::Mini> installation on the computer.
 
 =head1 AUTHOR
 

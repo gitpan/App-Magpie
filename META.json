@@ -27,15 +27,19 @@
       "runtime" : {
          "requires" : {
             "App::Cmd::Setup" : 0,
+            "CPAN::Mini" : 0,
+            "File::Copy" : 0,
             "FindBin" : 0,
             "LWP::UserAgent" : 0,
             "Log::Dispatchouli" : 0,
             "Moose" : 0,
             "MooseX::Has::Sugar" : 0,
             "Parse::CPAN::Meta" : "1.4401",
+            "Parse::CPAN::Packages" : 0,
             "Path::Class" : "0.22",
             "Text::Padding" : 0,
-            "perl" : "5.012"
+            "perl" : "5.012",
+            "version" : 0
          }
       },
       "test" : {
@@ -49,27 +53,31 @@
    "provides" : {
       "App::Magpie" : {
          "file" : "lib/App/Magpie.pm",
-         "version" : "1.110390"
+         "version" : "1.110410"
       },
       "App::Magpie::App" : {
          "file" : "lib/App/Magpie/App.pm",
-         "version" : "1.110390"
+         "version" : "1.110410"
       },
       "App::Magpie::App::Command" : {
          "file" : "lib/App/Magpie/App/Command.pm",
-         "version" : "1.110390"
+         "version" : "1.110410"
       },
       "App::Magpie::App::Command::bswait" : {
          "file" : "lib/App/Magpie/App/Command/bswait.pm",
-         "version" : "1.110390"
+         "version" : "1.110410"
       },
       "App::Magpie::App::Command::checkout" : {
          "file" : "lib/App/Magpie/App/Command/checkout.pm",
-         "version" : "1.110390"
+         "version" : "1.110410"
       },
       "App::Magpie::App::Command::fixspec" : {
          "file" : "lib/App/Magpie/App/Command/fixspec.pm",
-         "version" : "1.110390"
+         "version" : "1.110410"
+      },
+      "App::Magpie::App::Command::update" : {
+         "file" : "lib/App/Magpie/App/Command/update.pm",
+         "version" : "1.110410"
       }
    },
    "release_status" : "stable",
@@ -85,7 +93,7 @@
          "web" : "http://github.com/jquelin/app-magpie"
       }
    },
-   "version" : "1.110390",
+   "version" : "1.110410",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

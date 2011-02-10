@@ -12,16 +12,21 @@ use warnings;
 
 package App::Magpie;
 BEGIN {
-  $App::Magpie::VERSION = '1.110390';
+  $App::Magpie::VERSION = '1.110410';
 }
 # ABSTRACT: Mageia Perl Integration Easy
 
-use Parse::CPAN::Meta   1.4401; # load_file
+use CPAN::Mini;
+use File::Copy;
+use LWP::UserAgent;
 use Log::Dispatchouli;
 use Moose;
 use MooseX::Has::Sugar;
+use Parse::CPAN::Meta   1.4401; # load_file
+use Parse::CPAN::Packages;
 use Path::Class         0.22;   # dir->basename
 use Text::Padding;
+use version;
 
 
 # -- public attributes
@@ -36,12 +41,38 @@ has logger => (
             ident     => "magpie",
             to_stderr => 1,
             log_pid   => 0,
+            prefix    => '[magpie] ',
         });
     },
 );
 
 
+
 # -- public methods
+
+
+sub bswait {
+    my ($self, $opts) = @_;
+    $self->log( "checking bs wait hint" );
+
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(10);
+    $ua->env_proxy;
+
+    my $response = $ua->head('http://pkgsubmit.mageia.org/');
+    $self->log_fatal( $response->status_line ) unless $response->is_success;
+
+    my $sleep = $response->header( "x-bs-throttle" );
+    $self->log( "bs recommends to sleep $sleep seconds" );
+
+    if ( !$opts->{nosleep} && $sleep ) {
+        $self->log_debug( "sleeping $sleep seconds" );
+        sleep($sleep);
+    }
+
+    return $sleep;
+}
+
 
 
 sub checkout {
@@ -169,6 +200,7 @@ sub fixspec {
     # updating %doc
     $self->log_debug( "fetching documentation files" );
     my @docfiles =
+        sort
         grep { ! /^MANIFEST/ }
         grep { /^[A-Z]+$/ || m{^(Change(s|log)|META.(json|yml)|eg|examples)$}i }
         map  { $_->basename }
@@ -222,6 +254,99 @@ sub fixspec {
     $fh->close;
 }
 
+
+
+sub update {
+    my ($self) = @_;
+
+    # check if there's a spec file to update...
+    my $specdir = dir("SPECS");
+    -e $specdir or $self->log_fatal("cannot find a SPECS directory, aborting");
+    my @specfiles =
+        grep { /\.spec$/ }
+        $specdir->children;
+    scalar(@specfiles) > 0
+        or $self->log_fatal("could not find a spec file, aborting");
+    scalar(@specfiles) < 2
+        or $self->log_fatal("more than one spec file found, aborting");
+    my $specfile = shift @specfiles;
+    my $spec = $specfile->slurp;
+    my $pkgname = $specfile->basename; $pkgname =~ s/\.spec$//;
+    $self->log( "updating $pkgname" );
+
+    # check if package uses %upstream_{name|version}
+    my ($distname) = ( $spec =~ /^%define\s+upstream_name\s+(.*)$/m );
+    my ($distvers) = ( $spec =~ /^%define\s+upstream_version\s+(.*)$/m );
+    defined($distname) or $self->log_fatal( "package does not use %upstream_name" );
+    defined($distvers) or $self->log_fatal( "package does not use %upstream_version" );
+    $self->log_debug( "perl distribution to update: $distname v$distvers" );
+
+    # check if we have a minicpan at hand
+    my $cpanmconf = CPAN::Mini->config_file;
+    defined($cpanmconf)
+        or $self->log_fatal("no minicpan installation found, aborting");
+    my %config   = CPAN::Mini->read_config( {quiet=>1} );
+    my $cpanmdir = dir( $config{local} );
+    $self->log_debug( "found a minicpan installation in $cpanmdir" );
+
+    # try to find a newer version
+    $self->log_debug( "parsing 02packages.details.txt.gz" );
+    my $modgz   = $cpanmdir->file("modules", "02packages.details.txt.gz");
+    my $p       = Parse::CPAN::Packages->new( $modgz->stringify );
+    my $dist    = $p->latest_distribution( $distname );
+    my $newvers = $dist->version;
+    version->new( $newvers ) > version->new( $distvers )
+        or $self->log_fatal( "no new version found" );
+    $self->log( "new version found: $newvers" );
+
+    # copy tarball
+    my $cpantarball = $cpanmdir->file( "authors", "id", $dist->prefix );
+    my $tarball     = $dist->filename;
+    $self->log_debug( "copying $tarball to SOURCES" );
+    copy( $cpantarball->stringify, "SOURCES" )
+        or $self->log_fatal( "could not copy $cpantarball to SOURCES: $!" );
+
+    # update spec file
+    $self->log_debug( "updating spec file $specfile" );
+    $spec =~ s/%mkrel \d+/%mkrel 1/;
+    $spec =~ s/^(%define upstream_version) .*/$1 $newvers/m;
+    my $specfh = $specfile->openw;
+    $specfh->print( $spec );
+    $specfh->close;
+
+    # fix spec file, update buildrequires
+    $self->fixspec;
+
+    # create script
+    my $script  = file( "refresh" );
+    my $fh = $script->openw;
+    $fh->print(<<EOF);
+#!/bin/bash
+bm -l                          && \\
+mgarepo sync -c                && \\
+svn ci -m "update to $newvers" && \\
+mgarepo submit                 && \\
+rm \$0
+EOF
+    $fh->close;
+    chmod 0755, $script;
+
+    # local dry-run
+    $self->log( "trying to build package locally" );
+    $self->_run_command( "bm -l" );
+
+    # push changes
+    $self->log( "committing changes" );
+    $self->_run_command( "mgarepo sync -c" );
+    $self->_run_command( "svn ci -m 'update to $newvers'" );
+
+    # submit
+    $self->bswait;
+    $self->_run_command( "mgarepo submit" );
+    $script->remove;
+}
+
+
 # -- private methods
 
 #
@@ -253,7 +378,7 @@ App::Magpie - Mageia Perl Integration Easy
 
 =head1 VERSION
 
-version 1.110390
+version 1.110410
 
 =head1 DESCRIPTION
 
@@ -295,6 +420,15 @@ The L<Log::Dispatchouli> object used for logging.
 Log stuff at various verbose levels. Uses L<Log::Dispatchouli>
 underneath - refer to this module for more information.
 
+=head2 bswait
+
+    my $sleep = $magpie->bswait( $opts );
+
+Check Mageia build-system and fetch the wait hint. Sleep according to
+this hint, unless $opts->{nosleep} is true.
+
+Return the number of recommended number of seconds to sleep.
+
 =head2 checkout
 
     my $pkgdir = $magpie->checkout( $pkg [, $directory] );
@@ -310,6 +444,13 @@ Return the directory in which the checkout is located.
 
 Fix the spec file to match a set of rules. Make sure buildrequires are
 correct.
+
+=head2 update
+
+    $magpie->update;
+
+Try to update the current checked-out package to its latest version, if
+there's one available.
 
 =head1 SEE ALSO
 

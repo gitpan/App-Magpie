@@ -12,11 +12,9 @@ use warnings;
 
 package App::Magpie::App::Command::bswait;
 BEGIN {
-  $App::Magpie::App::Command::bswait::VERSION = '1.110390';
+  $App::Magpie::App::Command::bswait::VERSION = '1.110410';
 }
 # ABSTRACT: pause according to build-system recommendations
-
-use LWP::UserAgent;
 
 use App::Magpie::App -command;
 
@@ -34,29 +32,16 @@ sub opt_spec {
     my $self = shift;
     return (
         [],
-        [ 'display|d=s' => "text to display with --verbose", { default=>"sleeping %d seconds\n" } ],
         [ 'nosleep|n!'  => "don't sleep" ],
-        [ 'verbose|v!'  => "display time to wait" ],
+        [],
+        $self->verbose_options,
     );
 }
 
 sub execute {
     my ($self, $opts, $args) = @_;
-
-    # allow user-defined eol
-    $opts->{display} =~ s/\\n/\n/g;
-
-    my $ua = LWP::UserAgent->new;
-    $ua->timeout(10);
-    $ua->env_proxy;
-
-    my $response = $ua->head('http://pkgsubmit.mageia.org/');
-    die $response->status_line unless $response->is_success;
-
-    my $sleep = $response->header( "x-bs-throttle" );
-
-    printf($opts->{display}, $sleep) if $opts->{verbose};
-    sleep($sleep)                    unless $opts->{sleep};
+    $self->log_init($opts);
+    $self->magpie->bswait($opts);
 }
 
 1;
@@ -70,7 +55,7 @@ App::Magpie::App::Command::bswait - pause according to build-system recommendati
 
 =head1 VERSION
 
-version 1.110390
+version 1.110410
 
 =head1 DESCRIPTION
 

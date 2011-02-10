@@ -20,22 +20,26 @@ my %module_build_args = (
     'Jerome Quelin <jquelin@gmail.com>'
   ],
   'dist_name' => 'App-Magpie',
-  'dist_version' => '1.110390',
+  'dist_version' => '1.110410',
   'license' => 'perl',
   'module_name' => 'App::Magpie',
   'recommends' => {},
   'recursive_test_files' => 1,
   'requires' => {
     'App::Cmd::Setup' => '0',
+    'CPAN::Mini' => '0',
+    'File::Copy' => '0',
     'FindBin' => '0',
     'LWP::UserAgent' => '0',
     'Log::Dispatchouli' => '0',
     'Moose' => '0',
     'MooseX::Has::Sugar' => '0',
     'Parse::CPAN::Meta' => '1.4401',
+    'Parse::CPAN::Packages' => '0',
     'Path::Class' => '0.22',
     'Text::Padding' => '0',
-    'perl' => '5.012'
+    'perl' => '5.012',
+    'version' => '0'
   },
   'script_files' => [
     'bin/magpie'
