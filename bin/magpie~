@@ -45,9 +45,9 @@ version 1.110470
 =head1 SYNOPSIS
 
     # for help purposes
-    magpie commands
-    magpie help
-    magpie help subcommand
+    mem44 commands
+    mem44 help
+    mem44 help subcommand
 
     # to really do stuff
     magpie <subcommand>

@@ -7,10 +7,13 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   'build_requires' => {
+    'Carp' => '0',
+    'English' => '0',
     'File::Find' => '0',
     'File::Temp' => '0',
     'Module::Build' => '0.3601',
-    'Test::More' => '0.88'
+    'Scalar::Util' => '0',
+    'Test::More' => '0.94'
   },
   'configure_requires' => {
     'Module::Build' => '0.3601'
@@ -20,7 +23,7 @@ my %module_build_args = (
     'Jerome Quelin <jquelin@gmail.com>'
   ],
   'dist_name' => 'App-Magpie',
-  'dist_version' => '1.110410',
+  'dist_version' => '1.110470',
   'license' => 'perl',
   'module_name' => 'App::Magpie',
   'recommends' => {},
@@ -42,7 +45,8 @@ my %module_build_args = (
     'version' => '0'
   },
   'script_files' => [
-    'bin/magpie'
+    'bin/magpie',
+    'bin/magpie~'
   ]
 );
 

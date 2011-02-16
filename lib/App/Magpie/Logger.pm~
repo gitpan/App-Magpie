@@ -1,0 +1,28 @@
+use 5.012;
+use strict;
+use warnings;
+
+package App::Magpie::Logger;
+
+use Moose;
+use MooseX::Has::Sugar;
+
+has log_level => ( rw, isa => "Int", default => 1 );
+
+
+sub debug {
+    my $self = shift;
+    return if $self->log_level < 2
+}
+
+sub fatal {
+}
+
+sub log {
+    my $self = shift;
+    return if $self->log_level < 1
+}
+
+
+1;
+__END__

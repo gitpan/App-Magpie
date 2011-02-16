@@ -1,19 +1,8 @@
-#
-# This file is part of App-Magpie
-#
-# This software is copyright (c) 2011 by Jerome Quelin.
-#
-# This is free software; you can redistribute it and/or modify it under
-# the same terms as the Perl 5 programming language system itself.
-#
 use 5.012;
 use strict;
 use warnings;
 
 package App::Magpie;
-BEGIN {
-  $App::Magpie::VERSION = '1.110470';
-}
 # ABSTRACT: Mageia Perl Integration Easy
 
 use CPAN::Mini;
@@ -31,6 +20,24 @@ use version;
 
 # -- public attributes
 
+=attr logger
+
+The L<Log::Dispatchouli> object used for logging.
+
+=method log
+
+=method log_debug
+
+=method log_fatal
+
+    $magpie->log( ... );
+    $magpie->log_debug( ... );
+    $magpie->log_fatal( ... );
+
+Log stuff at various verbose levels. Uses L<Log::Dispatchouli>
+underneath - refer to this module for more information.
+
+=cut
 
 has logger => (
     ro, lazy,
@@ -50,6 +57,16 @@ has logger => (
 
 # -- public methods
 
+=method bswait
+
+    my $sleep = $magpie->bswait( $opts );
+
+Check Mageia build-system and fetch the wait hint. Sleep according to
+this hint, unless $opts->{nosleep} is true.
+
+Return the number of recommended number of seconds to sleep.
+
+=cut
 
 sub bswait {
     my ($self, $opts) = @_;
@@ -74,6 +91,16 @@ sub bswait {
 }
 
 
+=method checkout
+
+    my $pkgdir = $magpie->checkout( $pkg [, $directory] );
+
+Check out C<$pkg> under C<$directory> (or current directory if no
+directory specified). Refresh the checkout if it already exists.
+
+Return the directory in which the checkout is located.
+
+=cut
 
 sub checkout {
     my ($self, $pkg, $directory) = @_;
@@ -97,6 +124,14 @@ sub checkout {
 }
 
 
+=method fixspec
+
+    $magpie->fixspec;
+
+Fix the spec file to match a set of rules. Make sure buildrequires are
+correct.
+
+=cut
 
 sub fixspec {
     my ($self) = @_;
@@ -151,17 +186,17 @@ sub fixspec {
         my %br_from_meta;
         if ( $meta->{"meta-spec"}{version} < 2 ) {
             %br_from_meta = (
-                %{ $meta->{configure_requires} // {} },
-                %{ $meta->{build_requires}     // {} },
-                %{ $meta->{requires}           // {} },
+                %{ $meta->{configure_requires} },
+                %{ $meta->{build_requires} },
+                %{ $meta->{requires} },
             );
         } else {
             my $prereqs = $meta->{prereqs};
             %br_from_meta = (
-                %{ $prereqs->{configure}{requires} // {} },
-                %{ $prereqs->{build}{requires}     // {} },
-                %{ $prereqs->{test}{requires}      // {} },
-                %{ $prereqs->{runtime}{requires}   // {} },
+                %{ $prereqs->{configure}{requires} },
+                %{ $prereqs->{build}{requires} },
+                %{ $prereqs->{test}{requires} },
+                %{ $prereqs->{runtime}{requires} },
             );
         }
 
@@ -255,6 +290,14 @@ sub fixspec {
 }
 
 
+=method update
+
+    $magpie->update;
+
+Try to update the current checked-out package to its latest version, if
+there's one available.
+
+=cut
 
 sub update {
     my ($self) = @_;
@@ -368,17 +411,7 @@ sub _run_command {
 }
 
 1;
-
-
-=pod
-
-=head1 NAME
-
-App::Magpie - Mageia Perl Integration Easy
-
-=head1 VERSION
-
-version 1.110470
+__END__
 
 =head1 DESCRIPTION
 
@@ -399,58 +432,6 @@ Even if they are Mageia-centered, and Perl-centered, some of those tools
 can be used also by to maintain non-Perl packages, or by other Linux
 distributions than Mageia. I'd like to hear from you in this case! :-)
 
-=head1 ATTRIBUTES
-
-=head2 logger
-
-The L<Log::Dispatchouli> object used for logging.
-
-=head1 METHODS
-
-=head2 log
-
-=head2 log_debug
-
-=head2 log_fatal
-
-    $magpie->log( ... );
-    $magpie->log_debug( ... );
-    $magpie->log_fatal( ... );
-
-Log stuff at various verbose levels. Uses L<Log::Dispatchouli>
-underneath - refer to this module for more information.
-
-=head2 bswait
-
-    my $sleep = $magpie->bswait( $opts );
-
-Check Mageia build-system and fetch the wait hint. Sleep according to
-this hint, unless $opts->{nosleep} is true.
-
-Return the number of recommended number of seconds to sleep.
-
-=head2 checkout
-
-    my $pkgdir = $magpie->checkout( $pkg [, $directory] );
-
-Check out C<$pkg> under C<$directory> (or current directory if no
-directory specified). Refresh the checkout if it already exists.
-
-Return the directory in which the checkout is located.
-
-=head2 fixspec
-
-    $magpie->fixspec;
-
-Fix the spec file to match a set of rules. Make sure buildrequires are
-correct.
-
-=head2 update
-
-    $magpie->update;
-
-Try to update the current checked-out package to its latest version, if
-there's one available.
 
 =head1 SEE ALSO
 
@@ -480,19 +461,4 @@ L<http://cpanratings.perl.org/d/App-Magpie>
 
 =back
 
-=head1 AUTHOR
-
-Jerome Quelin <jquelin@gmail.com>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2011 by Jerome Quelin.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-
-
-__END__
 
