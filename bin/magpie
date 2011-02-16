@@ -14,7 +14,7 @@ use warnings;
 
 package main;
 BEGIN {
-  $main::VERSION = '1.110470';
+  $main::VERSION = '1.110471';
 }
 # ABSTRACT: Mageia Perl Integration Easy
 
@@ -40,7 +40,7 @@ main - Mageia Perl Integration Easy
 
 =head1 VERSION
 
-version 1.110470
+version 1.110471
 
 =head1 SYNOPSIS
 
@@ -61,7 +61,7 @@ C<magpie help subcommand>.
 
 =head1 AUTHOR
 
-Jerome Quelin <jquelin@gmail.com>
+  Jerome Quelin <jquelin@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
