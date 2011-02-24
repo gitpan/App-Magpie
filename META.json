@@ -53,31 +53,31 @@
    "provides" : {
       "App::Magpie" : {
          "file" : "lib/App/Magpie.pm",
-         "version" : "1.110471"
+         "version" : "1.110550"
       },
       "App::Magpie::App" : {
          "file" : "lib/App/Magpie/App.pm",
-         "version" : "1.110471"
+         "version" : "1.110550"
       },
       "App::Magpie::App::Command" : {
          "file" : "lib/App/Magpie/App/Command.pm",
-         "version" : "1.110471"
+         "version" : "1.110550"
       },
       "App::Magpie::App::Command::bswait" : {
          "file" : "lib/App/Magpie/App/Command/bswait.pm",
-         "version" : "1.110471"
+         "version" : "1.110550"
       },
       "App::Magpie::App::Command::checkout" : {
          "file" : "lib/App/Magpie/App/Command/checkout.pm",
-         "version" : "1.110471"
+         "version" : "1.110550"
       },
       "App::Magpie::App::Command::fixspec" : {
          "file" : "lib/App/Magpie/App/Command/fixspec.pm",
-         "version" : "1.110471"
+         "version" : "1.110550"
       },
       "App::Magpie::App::Command::update" : {
          "file" : "lib/App/Magpie/App/Command/update.pm",
-         "version" : "1.110471"
+         "version" : "1.110550"
       }
    },
    "release_status" : "stable",
@@ -93,7 +93,7 @@
          "web" : "http://github.com/jquelin/app-magpie"
       }
    },
-   "version" : "1.110471",
+   "version" : "1.110550",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
