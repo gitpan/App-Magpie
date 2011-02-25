@@ -20,7 +20,7 @@ my %module_build_args = (
     'Jerome Quelin <jquelin@gmail.com>'
   ],
   'dist_name' => 'App-Magpie',
-  'dist_version' => '1.110550',
+  'dist_version' => '1.110560',
   'license' => 'perl',
   'module_name' => 'App::Magpie',
   'recommends' => {},
@@ -35,7 +35,7 @@ my %module_build_args = (
     'Moose' => '0',
     'MooseX::Has::Sugar' => '0',
     'Parse::CPAN::Meta' => '1.4401',
-    'Parse::CPAN::Packages' => '0',
+    'Parse::CPAN::Packages::Fast' => '0',
     'Path::Class' => '0.22',
     'Text::Padding' => '0',
     'perl' => '5.012',

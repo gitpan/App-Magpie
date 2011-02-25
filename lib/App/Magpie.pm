@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie;
 BEGIN {
-  $App::Magpie::VERSION = '1.110550';
+  $App::Magpie::VERSION = '1.110560';
 }
 # ABSTRACT: Mageia Perl Integration Easy
 
@@ -23,7 +23,7 @@ use Log::Dispatchouli;
 use Moose;
 use MooseX::Has::Sugar;
 use Parse::CPAN::Meta   1.4401; # load_file
-use Parse::CPAN::Packages;
+use Parse::CPAN::Packages::Fast;
 use Path::Class         0.22;   # dir->basename
 use Text::Padding;
 use version;
@@ -292,7 +292,7 @@ sub update {
     # try to find a newer version
     $self->log_debug( "parsing 02packages.details.txt.gz" );
     my $modgz   = $cpanmdir->file("modules", "02packages.details.txt.gz");
-    my $p       = Parse::CPAN::Packages->new( $modgz->stringify );
+    my $p       = Parse::CPAN::Packages::Fast->new( $modgz->stringify );
     my $dist    = $p->latest_distribution( $distname );
     my $newvers = $dist->version;
     version->new( $newvers ) > version->new( $distvers )
@@ -379,7 +379,7 @@ App::Magpie - Mageia Perl Integration Easy
 
 =head1 VERSION
 
-version 1.110550
+version 1.110560
 
 =head1 DESCRIPTION
 
@@ -483,7 +483,7 @@ L<http://cpanratings.perl.org/d/App-Magpie>
 
 =head1 AUTHOR
 
-  Jerome Quelin <jquelin@gmail.com>
+Jerome Quelin <jquelin@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 

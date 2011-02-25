@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::update;
 BEGIN {
-  $App::Magpie::App::Command::update::VERSION = '1.110550';
+  $App::Magpie::App::Command::update::VERSION = '1.110560';
 }
 # ABSTRACT: update a perl module to its latest version
 
@@ -55,7 +55,7 @@ App::Magpie::App::Command::update - update a perl module to its latest version
 
 =head1 VERSION
 
-version 1.110550
+version 1.110560
 
 =head1 SYNOPSIS
 
@@ -77,7 +77,7 @@ This command requires a C<CPAN::Mini> installation on the computer.
 
 =head1 AUTHOR
 
-  Jerome Quelin <jquelin@gmail.com>
+Jerome Quelin <jquelin@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 

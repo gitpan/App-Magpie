@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::checkout;
 BEGIN {
-  $App::Magpie::App::Command::checkout::VERSION = '1.110550';
+  $App::Magpie::App::Command::checkout::VERSION = '1.110560';
 }
 # ABSTRACT: check-out or update a given package
 
@@ -66,7 +66,7 @@ App::Magpie::App::Command::checkout - check-out or update a given package
 
 =head1 VERSION
 
-version 1.110550
+version 1.110560
 
 =head1 SYNOPSIS
 
@@ -93,7 +93,7 @@ your F<~/.bashrc>:
 
 =head1 AUTHOR
 
-  Jerome Quelin <jquelin@gmail.com>
+Jerome Quelin <jquelin@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
