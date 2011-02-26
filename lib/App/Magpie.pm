@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie;
 BEGIN {
-  $App::Magpie::VERSION = '1.110560';
+  $App::Magpie::VERSION = '1.110570';
 }
 # ABSTRACT: Mageia Perl Integration Easy
 
@@ -153,6 +153,7 @@ sub fixspec {
             %br_from_meta = (
                 %{ $meta->{configure_requires} // {} },
                 %{ $meta->{build_requires}     // {} },
+                %{ $meta->{test_requires}      // {} },
                 %{ $meta->{requires}           // {} },
             );
         } else {
@@ -179,8 +180,10 @@ sub fixspec {
 
         if ( $spec =~ /buildrequires/i ) {
             $spec =~ s{^(buildrequires:.*)$}{$rpmbr$1}mi;
-        } else {
+        } elsif ( $spec =~ /buildarch/i ) {
             $spec =~ s{^(buildarch.*)$}{$rpmbr$1}mi;
+        } else {
+            $spec =~ s{^(source.*)$}{$1\n\n$rpmbr}mi;
         }
     }
 
@@ -379,7 +382,7 @@ App::Magpie - Mageia Perl Integration Easy
 
 =head1 VERSION
 
-version 1.110560
+version 1.110570
 
 =head1 DESCRIPTION
 

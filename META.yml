@@ -19,25 +19,25 @@ name: App-Magpie
 provides:
   App::Magpie:
     file: lib/App/Magpie.pm
-    version: 1.110560
+    version: 1.110570
   App::Magpie::App:
     file: lib/App/Magpie/App.pm
-    version: 1.110560
+    version: 1.110570
   App::Magpie::App::Command:
     file: lib/App/Magpie/App/Command.pm
-    version: 1.110560
+    version: 1.110570
   App::Magpie::App::Command::bswait:
     file: lib/App/Magpie/App/Command/bswait.pm
-    version: 1.110560
+    version: 1.110570
   App::Magpie::App::Command::checkout:
     file: lib/App/Magpie/App/Command/checkout.pm
-    version: 1.110560
+    version: 1.110570
   App::Magpie::App::Command::fixspec:
     file: lib/App/Magpie/App/Command/fixspec.pm
-    version: 1.110560
+    version: 1.110570
   App::Magpie::App::Command::update:
     file: lib/App/Magpie/App/Command/update.pm
-    version: 1.110560
+    version: 1.110570
 requires:
   App::Cmd::Setup: 0
   CPAN::Mini: 0
@@ -56,8 +56,8 @@ requires:
 resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=App-Magpie
   homepage: http://search.cpan.org/dist/App-Magpie/
-  repository: http://github.com/jquelin/app-magpie
-version: 1.110560
+  repository: git://github.com/jquelin/app-magpie.git
+version: 1.110570
 x_Dist_Zilla:
   plugins:
     -
@@ -99,7 +99,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ReportVersions::Tiny
       name: '@JQUELIN/ReportVersions::Tiny'
-      version: 1.02
+      version: 1.03
     -
       class: Dist::Zilla::Plugin::PruneCruft
       name: '@JQUELIN/PruneCruft'
@@ -135,7 +135,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Prepender
       name: '@JQUELIN/Prepender'
-      version: 1.101590
+      version: 1.103470
     -
       class: Dist::Zilla::Plugin::ExecDir
       name: '@JQUELIN/ExecDir'
@@ -155,11 +155,11 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Repository
       name: '@JQUELIN/Repository'
-      version: 0.15
+      version: 0.17
     -
       class: Dist::Zilla::Plugin::MetaProvides::Package
       name: '@JQUELIN/MetaProvides::Package'
-      version: 1.11034304
+      version: 1.12044908
     -
       class: Dist::Zilla::Plugin::MetaConfig
       name: '@JQUELIN/MetaConfig'
