@@ -28,12 +28,15 @@
          "requires" : {
             "App::Cmd::Setup" : 0,
             "CPAN::Mini" : 0,
+            "Config::Tiny" : 0,
             "File::Copy" : 0,
+            "File::HomeDir::PathClass" : 0,
             "FindBin" : 0,
             "LWP::UserAgent" : 0,
             "Log::Dispatchouli" : 0,
             "Moose" : 0,
             "MooseX::Has::Sugar" : 0,
+            "MooseX::Singleton" : 0,
             "Parse::CPAN::Meta" : "1.4401",
             "Parse::CPAN::Packages::Fast" : 0,
             "Path::Class" : "0.22",
@@ -53,31 +56,39 @@
    "provides" : {
       "App::Magpie" : {
          "file" : "lib/App/Magpie.pm",
-         "version" : "1.110570"
+         "version" : "1.110590"
       },
       "App::Magpie::App" : {
          "file" : "lib/App/Magpie/App.pm",
-         "version" : "1.110570"
+         "version" : "1.110590"
       },
       "App::Magpie::App::Command" : {
          "file" : "lib/App/Magpie/App/Command.pm",
-         "version" : "1.110570"
+         "version" : "1.110590"
       },
       "App::Magpie::App::Command::bswait" : {
          "file" : "lib/App/Magpie/App/Command/bswait.pm",
-         "version" : "1.110570"
+         "version" : "1.110590"
       },
       "App::Magpie::App::Command::checkout" : {
          "file" : "lib/App/Magpie/App/Command/checkout.pm",
-         "version" : "1.110570"
+         "version" : "1.110590"
+      },
+      "App::Magpie::App::Command::config" : {
+         "file" : "lib/App/Magpie/App/Command/config.pm",
+         "version" : "1.110590"
       },
       "App::Magpie::App::Command::fixspec" : {
          "file" : "lib/App/Magpie/App/Command/fixspec.pm",
-         "version" : "1.110570"
+         "version" : "1.110590"
       },
       "App::Magpie::App::Command::update" : {
          "file" : "lib/App/Magpie/App/Command/update.pm",
-         "version" : "1.110570"
+         "version" : "1.110590"
+      },
+      "App::Magpie::Config" : {
+         "file" : "lib/App/Magpie/Config.pm",
+         "version" : "1.110590"
       }
    },
    "release_status" : "stable",
@@ -93,7 +104,7 @@
          "web" : "http://github.com/jquelin/app-magpie"
       }
    },
-   "version" : "1.110570",
+   "version" : "1.110590",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

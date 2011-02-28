@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command;
 BEGIN {
-  $App::Magpie::App::Command::VERSION = '1.110570';
+  $App::Magpie::App::Command::VERSION = '1.110590';
 }
 # ABSTRACT: base class for sub-commands
 
@@ -21,6 +21,7 @@ use Moose;
 use MooseX::Has::Sugar;
 
 use App::Magpie;
+use App::Magpie::Config;
 
 
 # -- public attributes
@@ -38,17 +39,22 @@ has magpie => (
 
 sub log_init {
     my ($self, $opts) = @_;
-    $self->magpie->logger->set_muted(1) if $opts->{quiet};
-    $self->magpie->logger->set_debug(1) if $opts->{verbose};
+
+    my $config =App::Magpie::Config->instance;
+    my $log_level = ( $config->get( "log", "level" ) // 1 ) + $opts->{verbose} - $opts->{quiet};
+    $self->magpie->logger->set_muted(1) if $log_level == 0;
+    $self->magpie->logger->set_debug(1) if $log_level == 2;
 }
 
 
 
 sub verbose_options {
+    my $config =App::Magpie::Config->instance;
+    my $log_level = ( qw{ quiet normal debug } )[ $config->get( "log", "level" ) // 1 ];
     return (
-        [ "Logging options" ],
-        [ 'verbose|v' => "display extra information" ],
-        [ 'quiet|q'   => "be quiet unless error"     ],
+        [ "Logging options (default log level: $log_level)" ],
+        [ 'verbose|v+' => "be more verbose (can be repeated)",  {default=>0} ],
+        [ 'quiet|q+'   => "be less versbose (can be repeated)", {default=>0} ],
     );
 }
 
@@ -63,7 +69,7 @@ App::Magpie::App::Command - base class for sub-commands
 
 =head1 VERSION
 
-version 1.110570
+version 1.110590
 
 =head1 DESCRIPTION
 

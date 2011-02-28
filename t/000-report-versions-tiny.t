@@ -50,8 +50,10 @@ sub pmver {
 
 eval { $v .= pmver('App::Cmd::Setup','any version') };
 eval { $v .= pmver('CPAN::Mini','any version') };
+eval { $v .= pmver('Config::Tiny','any version') };
 eval { $v .= pmver('File::Copy','any version') };
 eval { $v .= pmver('File::Find','any version') };
+eval { $v .= pmver('File::HomeDir::PathClass','any version') };
 eval { $v .= pmver('File::Temp','any version') };
 eval { $v .= pmver('FindBin','any version') };
 eval { $v .= pmver('LWP::UserAgent','any version') };
@@ -59,6 +61,7 @@ eval { $v .= pmver('Log::Dispatchouli','any version') };
 eval { $v .= pmver('Module::Build','0.3601') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('MooseX::Has::Sugar','any version') };
+eval { $v .= pmver('MooseX::Singleton','any version') };
 eval { $v .= pmver('Parse::CPAN::Meta','1.4401') };
 eval { $v .= pmver('Parse::CPAN::Packages::Fast','any version') };
 eval { $v .= pmver('Path::Class','0.22') };
