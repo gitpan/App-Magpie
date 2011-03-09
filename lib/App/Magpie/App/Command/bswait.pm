@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::bswait;
 BEGIN {
-  $App::Magpie::App::Command::bswait::VERSION = '1.110590';
+  $App::Magpie::App::Command::bswait::VERSION = '1.110680';
 }
 # ABSTRACT: pause according to build-system recommendations
 
@@ -41,7 +41,8 @@ sub opt_spec {
 sub execute {
     my ($self, $opts, $args) = @_;
     $self->log_init($opts);
-    $self->magpie->bswait($opts);
+    require App::Magpie::Action::BSWait;
+    App::Magpie::Action::BSWait->new->run($opts);
 }
 
 1;
@@ -55,7 +56,7 @@ App::Magpie::App::Command::bswait - pause according to build-system recommendati
 
 =head1 VERSION
 
-version 1.110590
+version 1.110680
 
 =head1 DESCRIPTION
 

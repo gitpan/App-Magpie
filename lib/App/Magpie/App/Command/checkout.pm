@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::checkout;
 BEGIN {
-  $App::Magpie::App::Command::checkout::VERSION = '1.110590';
+  $App::Magpie::App::Command::checkout::VERSION = '1.110680';
 }
 # ABSTRACT: check-out or update a given package
 
@@ -49,7 +49,8 @@ sub execute {
 
     # do the checkout
     $self->log_init($opts);
-    my $pkgdir = $self->magpie->checkout($pkg, $opts->{directory});
+    require App::Magpie::Action::Checkout;
+    my $pkgdir = App::Magpie::Action::Checkout->new->run($pkg, $opts->{directory});
 
     # display command to execute if shell mode
     say "cd $pkgdir" if $opts->{shell};
@@ -66,7 +67,7 @@ App::Magpie::App::Command::checkout - check-out or update a given package
 
 =head1 VERSION
 
-version 1.110590
+version 1.110680
 
 =head1 SYNOPSIS
 
