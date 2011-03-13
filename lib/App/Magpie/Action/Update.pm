@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Update;
 BEGIN {
-  $App::Magpie::Action::Update::VERSION = '1.110690';
+  $App::Magpie::Action::Update::VERSION = '1.110720';
 }
 # ABSTRACT: update command implementation
 
@@ -81,7 +81,7 @@ sub run {
     # update spec file
     $self->log_debug( "updating spec file $specfile" );
     $spec =~ s/%mkrel \d+/%mkrel 1/;
-    $spec =~ s/^(%define upstream_version) .*/$1 $newvers/m;
+    $spec =~ s/^(%define\s+upstream_version)\s+.*/$1 $newvers/m;
     my $specfh = $specfile->openw;
     $specfh->print( $spec );
     $specfh->close;
@@ -135,7 +135,7 @@ App::Magpie::Action::Update - update command implementation
 
 =head1 VERSION
 
-version 1.110690
+version 1.110720
 
 =head1 SYNOPSIS
 
