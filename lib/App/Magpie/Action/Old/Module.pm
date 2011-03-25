@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Old::Module;
 BEGIN {
-  $App::Magpie::Action::Old::Module::VERSION = '1.110720';
+  $App::Magpie::Action::Old::Module::VERSION = '1.110840';
 }
 # ABSTRACT: module that has a newer version available
 
@@ -26,8 +26,8 @@ use App::Magpie::URPM;
 
 # -- private vars
 
-my %SKIP = do {
-    my $sharedir = File::ShareDir::PathClass->dist_dir( 'App-Magpie' );
+my $sharedir = File::ShareDir::PathClass->dist_dir( 'App-Magpie' );
+my %SKIPMOD = do {
     my $skipfile = $sharedir->file( 'modules.skip' );
     my @skips = $skipfile->slurp;
     my %skip;
@@ -36,6 +36,19 @@ my %SKIP = do {
         chomp $skip;
         my ($module, $version, $reason) = split /\s*;\s*/, $skip;
         $skip{$module} = $version;
+    }
+    %skip;
+};
+
+my %SKIPPKG = do {
+    my $skipfile = $sharedir->file( 'packages.skip' );
+    my @skips = $skipfile->slurp;
+    my %skip;
+    foreach my $skip ( @skips ) {
+        next if $skip =~ /^#/;
+        chomp $skip;
+        my ($pkg, $reason) = split /\s*;\s*/, $skip;
+        $skip{$pkg} = 1;
     }
     %skip;
 };
@@ -69,20 +82,24 @@ sub category {
     my @pkgs   = $self->packages;
     my $iscore = $self->is_core;
 
-    if ( exists $SKIP{ $self->name } ) {
-        return "ignored" if not defined $SKIP{ $self->name };
-        return "ignored" if $self->newver eq $SKIP{ $self->name }
+    if ( exists $SKIPMOD{ $self->name } ) {
+        return "ignored" if not defined $SKIPMOD{ $self->name };
+        return "ignored" if $self->newver eq $SKIPMOD{ $self->name }
     }
 
     if ( $iscore ) {
         return "core"       if scalar(@pkgs) == 0;
-        return "dual-lifed" if scalar(@pkgs) == 1;
         return "strange"    if scalar(@pkgs) >= 2;
+        # scalar(@pkgs) == 1;
+        return "ignored" if exists $SKIPPKG{ $pkgs[0] };
+        return "dual-lifed";
     }
 
     return "orphan"  if scalar(@pkgs) == 0;
-    return "normal"  if scalar(@pkgs) == 1;
     return "strange" if scalar(@pkgs) >= 2;
+    # scalar(@pkgs) == 1;
+    return "ignored" if exists $SKIPPKG{ $pkgs[0]->name };
+    return "normal";
 }
 
 
@@ -98,7 +115,7 @@ App::Magpie::Action::Old::Module - module that has a newer version available
 
 =head1 VERSION
 
-version 1.110720
+version 1.110840
 
 =head1 DESCRIPTION
 
