@@ -10,11 +10,11 @@ use 5.012;
 use strict;
 use warnings;
 
-package App::Magpie::App::Command::fixspec;
+package App::Magpie::App::Command::sort;
 {
-  $App::Magpie::App::Command::fixspec::VERSION = '2.000';
+  $App::Magpie::App::Command::sort::VERSION = '2.000';
 }
-# ABSTRACT: update a spec file to match some policies
+# ABSTRACT: sort packages needing a rebuild according to their requires
 
 use App::Magpie::App -command;
 
@@ -22,13 +22,20 @@ use App::Magpie::App -command;
 # -- public methods
 
 sub description {
-"Update a spec file from a perl module package, and make sure it follows
-a list of various policies. Also update the list of build prereqs."
+"This command will sort a list of packages to be rebuilt so that
+dependencies are followed."
 }
 
 sub opt_spec {
     my $self = shift;
     return (
+        [],
+        [ 'input|i=s'
+            => "file with list of packages to be sorted (default: STDIN)"
+            => { default => "-" } ],
+        [ 'output|o=s'
+            => "file with list of sorted packages (default: STDOUT)"
+            => { default => "-" } ],
         [],
         $self->verbose_options,
     );
@@ -37,8 +44,8 @@ sub opt_spec {
 sub execute {
     my ($self, $opts, $args) = @_;
     $self->log_init($opts);
-    require App::Magpie::Action::FixSpec;
-    App::Magpie::Action::FixSpec->new->run;
+    require App::Magpie::Action::Sort;
+    App::Magpie::Action::Sort->new->run( $opts );
 }
 
 1;
@@ -49,7 +56,7 @@ __END__
 
 =head1 NAME
 
-App::Magpie::App::Command::fixspec - update a spec file to match some policies
+App::Magpie::App::Command::sort - sort packages needing a rebuild according to their requires
 
 =head1 VERSION
 
@@ -57,21 +64,15 @@ version 2.000
 
 =head1 SYNOPSIS
 
-    $ eval $( magpie co -s perl-Foo-Bar )
-    $ magpie fixspec
+    $ urpmf --requires :perlapi-5.16 | perl -pi -E 's/:.*//' | magpie sort
 
     # to get list of available options
-    $ magpie help fixspec
+    $ magpie help sort
 
 =head1 DESCRIPTION
 
-This command will update a spec file from a perl module package, and
-make sure it follows a list of various policies. It will also update the
-list of build prereqs, according to F<META.yml> (or F<META.json>)
-shipped with the distribution.
-
-Note that this command will abort if it finds that the spec is too much
-outdated (eg, not using C<%perl_convert_version>)
+This command will sort a list of packages to be rebuilt so that
+dependencies are followed.
 
 =head1 AUTHOR
 

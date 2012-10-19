@@ -12,14 +12,13 @@ use warnings;
 
 package App::Magpie::Action::DWIM;
 {
-  $App::Magpie::Action::DWIM::VERSION = '1.122770';
+  $App::Magpie::Action::DWIM::VERSION = '2.000';
 }
 # ABSTRACT: dwim command implementation
 
 use File::pushd;
-use List::MoreUtils qw{ each_array };
 use Moose;
-use Proc::ParallelLoop;
+use Parallel::ForkManager;
 
 use App::Magpie::Action::Checkout;
 use App::Magpie::Action::Old;
@@ -40,14 +39,29 @@ sub run {
     }
     my @modules = $normal->all_modules;
 
+    my $pm = Parallel::ForkManager->new(5);
+    my @failed;
+    $pm->run_on_finish( sub {
+            my ($pid, $rv, $id, $signal, $core, $data) = @_;
+            push @failed, $id if $rv;
+            print $data;
+        } );
+
     # loop around the modules
-    my @status = pareach [ @modules ], sub {
-        my $module = shift;
+    my %seen;
+    foreach my $module (@modules) {
         my $pkg = ( $module->packages )[0];
-        $self->log( "updating " . $module->name
+        my $modname = $module->name;
+        my $pkgname = $pkg->name;
+        return if $seen{$pkgname}++; # do not try to update a pkg more than once
+
+        # forks and returns the pid for the child:
+        my $pid = $pm->start($pkgname) and next;
+
+        $self->log( "updating " . $modname
             . " from " .  $module->oldver
             . " to "   . $module->newver
-            . " in "   . $pkg->name );
+            . " in "   . $pkgname );
 
         # check out the package
         my $pkgdir = App::Magpie::Action::Checkout->new->run( $pkg->name, $directory );
@@ -55,15 +69,11 @@ sub run {
 
         # update the package
         eval { App::Magpie::Action::Update->new->run; };
-        exit ( $@ ? 1 : 0 );
-    }, { Max_Workers => 5 };
-
-    my $ea = each_array(@modules, @status);
-    while ( my ($m, $s) = $ea->() ) {
-        next if $s == 0;
-        my $pkg = ( $m->packages )[0];
-        $self->log( "error while updating: " . $pkg->name );
+        my $rv = $@ ? 1 : 0;
+        $pm->finish( $rv ); # Terminates the child process
     }
+    $pm->wait_all_children;
+    $self->log( "error while updating: $_" ) for sort @failed;
 }
 
 
@@ -80,16 +90,16 @@ App::Magpie::Action::DWIM - dwim command implementation
 
 =head1 VERSION
 
-version 1.122770
+version 2.000
 
 =head1 SYNOPSIS
 
-    my $old = App::Magpie::Action::Old->new;
-    my @old = $old->run;
+    my $dwim = App::Magpie::Action::DWIM->new;
+    $dwim->run;
 
 =head1 DESCRIPTION
 
-This module implements the C<old> action. It's in a module of its own
+This module implements the C<dwim> action. It's in a module of its own
 to be able to be C<require>-d without loading all other actions.
 
 =head1 METHODS

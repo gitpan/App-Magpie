@@ -12,9 +12,9 @@ use warnings;
 
 package App::Magpie::URPM;
 {
-  $App::Magpie::URPM::VERSION = '1.122770';
+  $App::Magpie::URPM::VERSION = '2.000';
 }
-# ABSTRACT: magpie interface to urpm
+# ABSTRACT: magpie interface to L<URPM>
 
 use MooseX::Singleton;
 use MooseX::Has::Sugar;
@@ -25,7 +25,17 @@ with "App::Magpie::Role::Logging";
 
 # -- private attributes
 
-has _urpm => ( ro, isa=>"URPM", lazy_build );
+
+has _urpm => (
+    ro, lazy_build,
+    isa     => "URPM",
+    handles => {
+        packages => "packages_by_name",
+    },
+);
+
+
+# -- initialization
 
 sub _build__urpm {
     my ($self) = @_;
@@ -57,11 +67,11 @@ __END__
 
 =head1 NAME
 
-App::Magpie::URPM - magpie interface to urpm
+App::Magpie::URPM - magpie interface to L<URPM>
 
 =head1 VERSION
 
-version 1.122770
+version 2.000
 
 =head1 SYNOPSIS
 
@@ -73,6 +83,13 @@ This module is a wrapper around URPM, and allows to query it for Perl
 modules requires & provides.
 
 =head1 METHODS
+
+=head2 packages
+
+    my @pkgs = $urpm->packages( $name );
+
+Return Mageia packages (plural because of multiple archs) which name is
+C<$name>.
 
 =head2 packages_providing
 

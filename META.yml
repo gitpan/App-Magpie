@@ -10,7 +10,7 @@ build_requires:
 configure_requires:
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300024, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 4.300026, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -19,94 +19,103 @@ name: App-Magpie
 provides:
   App::Magpie:
     file: lib/App/Magpie.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::BSWait:
     file: lib/App/Magpie/Action/BSWait.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::Checkout:
     file: lib/App/Magpie/Action/Checkout.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::DWIM:
     file: lib/App/Magpie/Action/DWIM.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::FixSpec:
     file: lib/App/Magpie/Action/FixSpec.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::Missing:
     file: lib/App/Magpie/Action/Missing.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::Old:
     file: lib/App/Magpie/Action/Old.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::Old::Module:
     file: lib/App/Magpie/Action/Old/Module.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::Old::Set:
     file: lib/App/Magpie/Action/Old/Set.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::Recent:
     file: lib/App/Magpie/Action/Recent.pm
-    version: 1.122770
+    version: 2.000
+  App::Magpie::Action::Sort:
+    file: lib/App/Magpie/Action/Sort.pm
+    version: 2.000
+  App::Magpie::Action::Sort::Package:
+    file: lib/App/Magpie/Action/Sort/Package.pm
+    version: 2.000
   App::Magpie::Action::Update:
     file: lib/App/Magpie/Action/Update.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Action::WebStatic:
     file: lib/App/Magpie/Action/WebStatic.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App:
     file: lib/App/Magpie/App.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command:
     file: lib/App/Magpie/App/Command.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command::bswait:
     file: lib/App/Magpie/App/Command/bswait.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command::checkout:
     file: lib/App/Magpie/App/Command/checkout.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command::config:
     file: lib/App/Magpie/App/Command/config.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command::dwim:
     file: lib/App/Magpie/App/Command/dwim.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command::fixspec:
     file: lib/App/Magpie/App/Command/fixspec.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command::missing:
     file: lib/App/Magpie/App/Command/missing.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command::old:
     file: lib/App/Magpie/App/Command/old.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command::recent:
     file: lib/App/Magpie/App/Command/recent.pm
-    version: 1.122770
+    version: 2.000
+  App::Magpie::App::Command::sort:
+    file: lib/App/Magpie/App/Command/sort.pm
+    version: 2.000
   App::Magpie::App::Command::update:
     file: lib/App/Magpie/App/Command/update.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::App::Command::webstatic:
     file: lib/App/Magpie/App/Command/webstatic.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Config:
     file: lib/App/Magpie/Config.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Constants:
     file: lib/App/Magpie/Constants.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Logger:
     file: lib/App/Magpie/Logger.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Role::Logging:
     file: lib/App/Magpie/Role/Logging.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::Role::RunningCommand:
     file: lib/App/Magpie/Role/RunningCommand.pm
-    version: 1.122770
+    version: 2.000
   App::Magpie::URPM:
     file: lib/App/Magpie/URPM.pm
-    version: 1.122770
+    version: 2.000
 requires:
   App::Cmd::Setup: 0
   CPAN::Mini: 0
@@ -123,7 +132,6 @@ requires:
   LWP::Simple: 0
   LWP::UserAgent: 0
   List::AllUtils: 0
-  List::MoreUtils: 0
   Log::Dispatchouli: 0
   MetaCPAN::API: 0
   Moose: 0
@@ -132,10 +140,10 @@ requires:
   MooseX::SemiAffordanceAccessor: 0
   MooseX::Singleton: 0
   ORDB::CPAN::Mageia: 0
+  Parallel::ForkManager: 0
   Parse::CPAN::Meta: 1.4401
   Parse::CPAN::Packages::Fast: 0
   Path::Class: 0.22
-  Proc::ParallelLoop: 0
   RRDTool::OO: 0
   Readonly: 0
   Template: 0
@@ -149,75 +157,63 @@ resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=App-Magpie
   homepage: http://search.cpan.org/dist/App-Magpie/
   repository: git://github.com/jquelin/app-magpie.git
-version: 1.122770
+version: 2.000
 x_Dist_Zilla:
   perl:
     version: 5.016001
   plugins:
     -
-      class: Dist::Zilla::Plugin::AutoVersion
-      name: '@Author::JQUELIN/AutoVersion'
-      version: 4.300024
+      class: Dist::Zilla::Plugin::Git::NextVersion
+      name: '@Author::JQUELIN/Git::NextVersion'
+      version: 2.001
     -
       class: Dist::Zilla::Plugin::GatherDir
       name: '@Author::JQUELIN/GatherDir'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::Test::Compile
       name: '@Author::JQUELIN/Test::Compile'
       version: 1.112820
     -
-      class: Dist::Zilla::Plugin::HasVersionTests
-      name: '@Author::JQUELIN/HasVersionTests'
-      version: 1.101420
-    -
-      class: Dist::Zilla::Plugin::Test::Kwalitee
-      name: '@Author::JQUELIN/Test::Kwalitee'
-      version: 2.03
-    -
-      class: Dist::Zilla::Plugin::Test::MinimumVersion
-      name: '@Author::JQUELIN/Test::MinimumVersion'
-      version: 2.000002
-    -
       class: Dist::Zilla::Plugin::PodCoverageTests
       name: '@Author::JQUELIN/PodCoverageTests'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::PodSyntaxTests
       name: '@Author::JQUELIN/PodSyntaxTests'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::ReportVersions::Tiny
       name: '@Author::JQUELIN/ReportVersions::Tiny'
-      version: 1.06
+      version: 1.08
     -
       class: Dist::Zilla::Plugin::PruneCruft
       name: '@Author::JQUELIN/PruneCruft'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::PruneFiles
       name: '@Author::JQUELIN/PruneFiles'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::ManifestSkip
       name: '@Author::JQUELIN/ManifestSkip'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::AutoPrereqs
       name: '@Author::JQUELIN/AutoPrereqs'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::ExtraTests
       name: '@Author::JQUELIN/ExtraTests'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::NextRelease
       name: '@Author::JQUELIN/NextRelease'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::PkgVersion
       name: '@Author::JQUELIN/PkgVersion'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::PodWeaver
       name: '@Author::JQUELIN/PodWeaver'
@@ -229,11 +225,11 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ExecDir
       name: '@Author::JQUELIN/ExecDir'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::ShareDir
       name: '@Author::JQUELIN/ShareDir'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::Bugtracker
       name: '@Author::JQUELIN/Bugtracker'
@@ -253,89 +249,99 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::MetaConfig
       name: '@Author::JQUELIN/MetaConfig'
-      version: 4.300024
+      version: 4.300026
+    -
+      class: Dist::Zilla::Plugin::HelpWanted
+      name: '@Author::JQUELIN/HelpWanted'
+      version: 0.2.1
     -
       class: Dist::Zilla::Plugin::License
       name: '@Author::JQUELIN/License'
-      version: 4.300024
+      version: 4.300026
+    -
+      class: Dist::Zilla::Plugin::Covenant
+      name: '@Author::JQUELIN/Covenant'
+      version: 0.1.0
     -
       class: Dist::Zilla::Plugin::MetaYAML
       name: '@Author::JQUELIN/MetaYAML'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::MetaJSON
       name: '@Author::JQUELIN/MetaJSON'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::ModuleBuild
       name: '@Author::JQUELIN/ModuleBuild'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::Readme
       name: '@Author::JQUELIN/Readme'
-      version: 4.300024
+      version: 4.300026
+    -
+      class: Dist::Zilla::Plugin::ReadmeAnyFromPod
+      name: '@Author::JQUELIN/ReadmeAnyFromPod'
+      version: 0.120120
     -
       class: Dist::Zilla::Plugin::Manifest
       name: '@Author::JQUELIN/Manifest'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::CheckChangeLog
       name: '@Author::JQUELIN/CheckChangeLog'
       version: 0.01
     -
+      class: Dist::Zilla::Plugin::TestRelease
+      name: '@Author::JQUELIN/TestRelease'
+      version: 4.300026
+    -
       class: Dist::Zilla::Plugin::Git::Check
       name: '@Author::JQUELIN/Git::Check'
-      version: 1.122530
+      version: 2.001
     -
       class: Dist::Zilla::Plugin::Git::Commit
       name: '@Author::JQUELIN/Git::Commit'
-      version: 1.122530
-    -
-      class: Dist::Zilla::Plugin::Git::CommitBuild
-      name: '@Author::JQUELIN/Git::CommitBuild'
-      version: 1.122530
+      version: 2.001
     -
       class: Dist::Zilla::Plugin::Git::Tag
-      name: '@Author::JQUELIN/TagMaster'
-      version: 1.122530
-    -
-      class: Dist::Zilla::Plugin::Git::Tag
-      name: '@Author::JQUELIN/TagRelease'
-      version: 1.122530
+      name: '@Author::JQUELIN/Git::Tag'
+      version: 2.001
     -
       class: Dist::Zilla::Plugin::Git::Push
       name: '@Author::JQUELIN/Git::Push'
-      version: 1.122530
+      version: 2.001
     -
       class: Dist::Zilla::Plugin::UploadToCPAN
       name: '@Author::JQUELIN/UploadToCPAN'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':IncModules'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':TestFiles'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':ExecFiles'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':ShareFiles'
-      version: 4.300024
+      version: 4.300026
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':MainModule'
-      version: 4.300024
+      version: 4.300026
   zilla:
     class: Dist::Zilla::Dist::Builder
     config:
       is_trial: 0
-    version: 4.300024
+    version: 4.300026
+x_author_pledge:
+  version: 1
