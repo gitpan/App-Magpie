@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::DWIM;
 {
-  $App::Magpie::Action::DWIM::VERSION = '2.000';
+  $App::Magpie::Action::DWIM::VERSION = '2.001';
 }
 # ABSTRACT: dwim command implementation
 
@@ -90,7 +90,7 @@ App::Magpie::Action::DWIM - dwim command implementation
 
 =head1 VERSION
 
-version 2.000
+version 2.001
 
 =head1 SYNOPSIS
 

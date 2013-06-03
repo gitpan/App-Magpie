@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Sort;
 {
-  $App::Magpie::Action::Sort::VERSION = '2.000';
+  $App::Magpie::Action::Sort::VERSION = '2.001';
 }
 # ABSTRACT: sort command implementation
 
@@ -118,7 +118,7 @@ App::Magpie::Action::Sort - sort command implementation
 
 =head1 VERSION
 
-version 2.000
+version 2.001
 
 =head1 SYNOPSIS
 

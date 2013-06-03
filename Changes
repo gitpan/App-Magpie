@@ -1,5 +1,9 @@
 Changelog for App-Magpie
 
+2.001     2013-06-03 13:55:57 Europe/Paris
+ - old: using cpan instead of cpanp
+ - old: only list a pkgs once, even if multiple modules are old
+
 2.000     2012-10-19 15:53:22 Europe/Paris
  - migrated to @dzpa:jquelin
  - new command: sort

@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::config;
 {
-  $App::Magpie::App::Command::config::VERSION = '2.000';
+  $App::Magpie::App::Command::config::VERSION = '2.001';
 }
 # ABSTRACT: update a spec file to match some policies
 
@@ -65,7 +65,7 @@ App::Magpie::App::Command::config - update a spec file to match some policies
 
 =head1 VERSION
 
-version 2.000
+version 2.001
 
 =head1 SYNOPSIS
 

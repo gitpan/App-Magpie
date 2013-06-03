@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Sort::Package;
 {
-  $App::Magpie::Action::Sort::Package::VERSION = '2.000';
+  $App::Magpie::Action::Sort::Package::VERSION = '2.001';
 }
 # ABSTRACT: package in need of a rebuild
 
@@ -81,7 +81,7 @@ App::Magpie::Action::Sort::Package - package in need of a rebuild
 
 =head1 VERSION
 
-version 2.000
+version 2.001
 
 =head1 DESCRIPTION
 
