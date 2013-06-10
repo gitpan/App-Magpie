@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::missing;
 {
-  $App::Magpie::App::Command::missing::VERSION = '2.001';
+  $App::Magpie::App::Command::missing::VERSION = '2.002';
 }
 # ABSTRACT: List modules shipped by Mageia not present locally
 
@@ -54,7 +54,7 @@ App::Magpie::App::Command::missing - List modules shipped by Mageia not present 
 
 =head1 VERSION
 
-version 2.001
+version 2.002
 
 =head1 DESCRIPTION
 

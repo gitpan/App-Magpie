@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Recent;
 {
-  $App::Magpie::Action::Recent::VERSION = '2.001';
+  $App::Magpie::Action::Recent::VERSION = '2.002';
 }
 # ABSTRACT: recent command implementation
 
@@ -85,7 +85,7 @@ App::Magpie::Action::Recent - recent command implementation
 
 =head1 VERSION
 
-version 2.001
+version 2.002
 
 =head1 SYNOPSIS
 

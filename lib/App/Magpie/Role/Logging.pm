@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Role::Logging;
 {
-  $App::Magpie::Role::Logging::VERSION = '2.001';
+  $App::Magpie::Role::Logging::VERSION = '2.002';
 }
 # ABSTRACT: sthg that can log
 
@@ -45,7 +45,7 @@ App::Magpie::Role::Logging - sthg that can log
 
 =head1 VERSION
 
-version 2.001
+version 2.002
 
 =head1 SYNOPSIS
 

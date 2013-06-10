@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Old::Module;
 {
-  $App::Magpie::Action::Old::Module::VERSION = '2.001';
+  $App::Magpie::Action::Old::Module::VERSION = '2.002';
 }
 # ABSTRACT: module that has a newer version available
 
@@ -121,7 +121,7 @@ App::Magpie::Action::Old::Module - module that has a newer version available
 
 =head1 VERSION
 
-version 2.001
+version 2.002
 
 =head1 DESCRIPTION
 
