@@ -11,14 +11,11 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::Checkout;
-{
-  $App::Magpie::Action::Checkout::VERSION = '2.002';
-}
 # ABSTRACT: checkout command implementation
-
+$App::Magpie::Action::Checkout::VERSION = '2.003';
 use File::pushd;
 use Moose;
-use Path::Class;
+use Path::Tiny;
 
 use App::Magpie::URPM;
 
@@ -42,8 +39,8 @@ sub run {
     }
 
     # check out the package, or update the local checkout
-    my $dir    = defined($directory) ? dir( $directory ) : dir();
-    my $pkgdir = $dir->subdir( $pkg );
+    my $dir    = defined($directory) ? path( $directory ) : path(".");
+    my $pkgdir = $dir->child( $pkg );
     $dir->mkpath unless -d $dir;
     $self->log( "checking out $pkg in $pkgdir" );
 
@@ -80,13 +77,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::Checkout - checkout command implementation
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

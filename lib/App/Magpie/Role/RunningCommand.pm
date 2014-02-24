@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Role::RunningCommand;
-{
-  $App::Magpie::Role::RunningCommand::VERSION = '2.002';
-}
 # ABSTRACT: sthg that can run an external command
-
+$App::Magpie::Role::RunningCommand::VERSION = '2.003';
 use Moose::Role;
 use MooseX::Has::Sugar;
 
@@ -45,13 +42,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Role::RunningCommand - sthg that can run an external command
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

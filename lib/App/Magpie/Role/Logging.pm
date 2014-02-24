@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Role::Logging;
-{
-  $App::Magpie::Role::Logging::VERSION = '2.002';
-}
 # ABSTRACT: sthg that can log
-
+$App::Magpie::Role::Logging::VERSION = '2.003';
 use Moose::Role;
 use MooseX::Has::Sugar;
 
@@ -39,13 +36,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Role::Logging - sthg that can log
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

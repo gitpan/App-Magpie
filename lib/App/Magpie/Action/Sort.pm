@@ -11,14 +11,11 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::Sort;
-{
-  $App::Magpie::Action::Sort::VERSION = '2.002';
-}
 # ABSTRACT: sort command implementation
-
+$App::Magpie::Action::Sort::VERSION = '2.003';
 use List::AllUtils qw{ part uniq };
 use Moose;
-use Path::Class    qw{ file };
+use Path::Tiny;
 
 use App::Magpie::Action::Sort::Package;
 use App::Magpie::URPM;
@@ -33,8 +30,8 @@ sub run {
     my ($self, $opts) = @_;
 
     # default input/output files
-    my $in  = $opts->{input} eq "-"  ? *STDIN  : file($opts->{input})->openr;
-    my $out = $opts->{output} eq "-" ? *STDOUT : file($opts->{output})->openw;
+    my $in  = $opts->{input} eq "-"  ? *STDIN  : path($opts->{input})->openr;
+    my $out = $opts->{output} eq "-" ? *STDOUT : path($opts->{output})->openw;
 
     # get list of packages to sort
     my @unsorted = $in->getlines;
@@ -112,13 +109,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::Sort - sort command implementation
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

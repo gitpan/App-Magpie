@@ -11,16 +11,13 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::Update;
-{
-  $App::Magpie::Action::Update::VERSION = '2.002';
-}
 # ABSTRACT: update command implementation
-
+$App::Magpie::Action::Update::VERSION = '2.003';
 use CPAN::Mini;
 use File::Copy;
 use Moose;
 use Parse::CPAN::Packages::Fast;
-use Path::Class;
+use Path::Tiny;
 use version;
 
 with 'App::Magpie::Role::Logging';
@@ -32,7 +29,7 @@ sub run {
     my ($self) = @_;
 
     # check if there's a spec file to update...
-    my $specdir = dir("SPECS");
+    my $specdir = path("SPECS");
     -e $specdir or $self->log_fatal("cannot find a SPECS directory, aborting");
     my @specfiles =
         grep { /\.spec$/ }
@@ -58,12 +55,12 @@ sub run {
     defined($cpanmconf)
         or $self->log_fatal("no minicpan installation found, aborting");
     my %config   = CPAN::Mini->read_config( {quiet=>1} );
-    my $cpanmdir = dir( $config{local} );
+    my $cpanmdir = path( $config{local} );
     $self->log_debug( "found a minicpan installation in $cpanmdir" );
 
     # try to find a newer version
     $self->log_debug( "parsing 02packages.details.txt.gz" );
-    my $modgz   = $cpanmdir->file("modules", "02packages.details.txt.gz");
+    my $modgz   = $cpanmdir->child("modules", "02packages.details.txt.gz");
     my $p       = Parse::CPAN::Packages::Fast->new( $modgz->stringify );
     my $dist    = $p->latest_distribution( $distname );
     my $newvers = $dist->version;
@@ -72,7 +69,7 @@ sub run {
     $self->log( "new version found: $newvers" );
 
     # copy tarball
-    my $cpantarball = $cpanmdir->file( "authors", "id", $dist->prefix );
+    my $cpantarball = $cpanmdir->child( "authors", "id", $dist->prefix );
     my $tarball     = $dist->filename;
     $self->log_debug( "copying $tarball to SOURCES" );
     copy( $cpantarball->stringify, "SOURCES" )
@@ -90,7 +87,7 @@ sub run {
     $specfh->close;
 
     # create script
-    my $script  = file( "refresh" );
+    my $script  = path( "refresh" );
     my $fh = $script->openw;
     $fh->print(<<EOF);
 #!/bin/bash
@@ -133,13 +130,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::Update - update command implementation
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

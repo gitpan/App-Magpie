@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Config;
-{
-  $App::Magpie::Config::VERSION = '2.002';
-}
 # ABSTRACT: magpie configuration storage & retrieval
-
+$App::Magpie::Config::VERSION = '2.003';
 use Config::Tiny;
 use File::HomeDir::PathClass;
 use MooseX::Singleton;
@@ -64,13 +61,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Config - magpie configuration storage & retrieval
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

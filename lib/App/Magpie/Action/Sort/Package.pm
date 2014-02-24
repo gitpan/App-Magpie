@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::Sort::Package;
-{
-  $App::Magpie::Action::Sort::Package::VERSION = '2.002';
-}
 # ABSTRACT: package in need of a rebuild
-
+$App::Magpie::Action::Sort::Package::VERSION = '2.003';
 use Moose;
 use MooseX::Has::Sugar;
 use MooseX::SemiAffordanceAccessor;
@@ -75,13 +72,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::Sort::Package - package in need of a rebuild
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 DESCRIPTION
 

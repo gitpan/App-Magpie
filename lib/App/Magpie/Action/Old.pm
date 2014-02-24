@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::Old;
-{
-  $App::Magpie::Action::Old::VERSION = '2.002';
-}
 # ABSTRACT: old command implementation
-
+$App::Magpie::Action::Old::VERSION = '2.003';
 use Moose;
 
 use App::Magpie::Action::Old::Module;
@@ -58,13 +55,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::Old - old command implementation
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

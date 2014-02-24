@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::App::Command::webstatic;
-{
-  $App::Magpie::App::Command::webstatic::VERSION = '2.002';
-}
 # ABSTRACT: create a static web site
-
+$App::Magpie::App::Command::webstatic::VERSION = '2.003';
 use App::Magpie::App -command;
 
 
@@ -53,13 +50,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::App::Command::webstatic - create a static web site
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 DESCRIPTION
 

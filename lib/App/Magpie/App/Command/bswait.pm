@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::App::Command::bswait;
-{
-  $App::Magpie::App::Command::bswait::VERSION = '2.002';
-}
 # ABSTRACT: pause according to build-system recommendations
-
+$App::Magpie::App::Command::bswait::VERSION = '2.003';
 use App::Magpie::App -command;
 
 
@@ -51,13 +48,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::App::Command::bswait - pause according to build-system recommendations
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 DESCRIPTION
 

@@ -13,11 +13,8 @@ use strict;
 use warnings;
 
 package magpie;
-{
-  $magpie::VERSION = '2.002';
-}
 # ABSTRACT: Mageia Perl Integration Easy
-
+$magpie::VERSION = '2.003';
 use Find::Lib '../lib';
 use App::Magpie::App;
 
@@ -30,13 +27,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 magpie - Mageia Perl Integration Easy
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

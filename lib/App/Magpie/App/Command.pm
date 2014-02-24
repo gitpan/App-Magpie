@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::App::Command;
-{
-  $App::Magpie::App::Command::VERSION = '2.002';
-}
 # ABSTRACT: base class for sub-commands
-
+$App::Magpie::App::Command::VERSION = '2.003';
 use App::Cmd::Setup -command;
 use Moose;
 use MooseX::Has::Sugar;
@@ -63,13 +60,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::App::Command - base class for sub-commands
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 DESCRIPTION
 

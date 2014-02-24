@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::DWIM;
-{
-  $App::Magpie::Action::DWIM::VERSION = '2.002';
-}
 # ABSTRACT: dwim command implementation
-
+$App::Magpie::Action::DWIM::VERSION = '2.003';
 use File::pushd;
 use Moose;
 use Parallel::ForkManager;
@@ -84,13 +81,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::DWIM - dwim command implementation
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

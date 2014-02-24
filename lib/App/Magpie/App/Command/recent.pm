@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::App::Command::recent;
-{
-  $App::Magpie::App::Command::recent::VERSION = '2.002';
-}
 # ABSTRACT: Recent uploads on PAUSE not available in Mageia
-
+$App::Magpie::App::Command::recent::VERSION = '2.003';
 use App::Magpie::App -command;
 
 
@@ -47,13 +44,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::App::Command::recent - Recent uploads on PAUSE not available in Mageia
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 DESCRIPTION
 

@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::BSWait;
-{
-  $App::Magpie::Action::BSWait::VERSION = '2.002';
-}
 # ABSTRACT: bswait command implementation
-
+$App::Magpie::Action::BSWait::VERSION = '2.003';
 use LWP::UserAgent;
 use Moose;
 
@@ -53,13 +50,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::BSWait - bswait command implementation
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Logger;
-{
-  $App::Magpie::Logger::VERSION = '2.002';
-}
 # ABSTRACT: magpie logging facility
-
+$App::Magpie::Logger::VERSION = '2.003';
 use Log::Dispatchouli;
 use MooseX::Singleton;
 use MooseX::Has::Sugar;
@@ -76,13 +73,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Logger - magpie logging facility
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

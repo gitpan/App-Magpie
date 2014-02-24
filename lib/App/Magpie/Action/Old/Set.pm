@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::Old::Set;
-{
-  $App::Magpie::Action::Old::Set::VERSION = '2.002';
-}
 # ABSTRACT: a set of AM::Old::Modules objects
-
+$App::Magpie::Action::Old::Set::VERSION = '2.003';
 use Moose;
 use MooseX::Has::Sugar;
 
@@ -45,13 +42,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::Old::Set - a set of AM::Old::Modules objects
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

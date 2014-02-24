@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::App::Command::dwim;
-{
-  $App::Magpie::App::Command::dwim::VERSION = '2.002';
-}
 # ABSTRACT: automagically update Mageia packages
-
+$App::Magpie::App::Command::dwim::VERSION = '2.003';
 use App::Magpie::App -command;
 
 
@@ -48,13 +45,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::App::Command::dwim - automagically update Mageia packages
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::App::Command::update;
-{
-  $App::Magpie::App::Command::update::VERSION = '2.002';
-}
 # ABSTRACT: update a perl module to its latest version
-
+$App::Magpie::App::Command::update::VERSION = '2.003';
 use App::Magpie::App -command;
 
 
@@ -51,13 +48,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::App::Command::update - update a perl module to its latest version
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

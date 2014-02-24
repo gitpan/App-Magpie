@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::URPM;
-{
-  $App::Magpie::URPM::VERSION = '2.002';
-}
 # ABSTRACT: magpie interface to L<URPM>
-
+$App::Magpie::URPM::VERSION = '2.003';
 use MooseX::Singleton;
 use MooseX::Has::Sugar;
 use URPM;
@@ -65,13 +62,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::URPM - magpie interface to L<URPM>
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 

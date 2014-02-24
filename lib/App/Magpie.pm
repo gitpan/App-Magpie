@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie;
-{
-  $App::Magpie::VERSION = '2.002';
-}
 # ABSTRACT: Mageia Perl Integration Easy
-
+$App::Magpie::VERSION = '2.003';
 
 1;
 
@@ -23,13 +20,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie - Mageia Perl Integration Easy
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 DESCRIPTION
 

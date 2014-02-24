@@ -1,5 +1,13 @@
 Changelog for App-Magpie
 
+2.003     2014-02-24 15:53:07+01:00 Europe/Paris
+ - old: new set "null" if one of the old/new version is 0
+ - old: new set "confused" when cpan reports a difference although there isn't
+ - old: update modules.skip
+ - fix: auto-converting SPEC to use Makefile.PL or Build.PL if needed
+ - fix: adding Module::Build::Tiny compatibility
+ - migrated from Path::Class to Path::Tiny
+
 2.002     2013-06-10 13:47:21 Europe/Paris
  - dwim: allow dwimery to continue when package should be updated again
 

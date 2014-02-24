@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::App;
-{
-  $App::Magpie::App::VERSION = '2.002';
-}
 # ABSTRACT: magpie's App::Cmd
-
+$App::Magpie::App::VERSION = '2.003';
 use App::Cmd::Setup -app;
 
 sub allow_any_unambiguous_abbrev { 1 }
@@ -26,13 +23,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::App - magpie's App::Cmd
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 DESCRIPTION
 

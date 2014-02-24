@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::Missing;
-{
-  $App::Magpie::Action::Missing::VERSION = '2.002';
-}
 # ABSTRACT: Missing command implementation
-
+$App::Magpie::Action::Missing::VERSION = '2.003';
 use Moose;
 use ORDB::CPAN::Mageia;
 use URPM;
@@ -50,13 +47,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::Missing - Missing command implementation
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 DESCRIPTION
 

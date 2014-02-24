@@ -11,20 +11,17 @@ use strict;
 use warnings;
 
 package App::Magpie::Constants;
-{
-  $App::Magpie::Constants::VERSION = '2.002';
-}
 # ABSTRACT: Various constants
-
+$App::Magpie::Constants::VERSION = '2.003';
 use Exporter::Lite;
-use File::ShareDir::PathClass;
-use Path::Class;
+use File::ShareDir;
+use Path::Tiny;
  
 our @EXPORT_OK = qw{ $SHAREDIR };
 
-our $SHAREDIR = -e file("dist.ini")
-    ? dir ("share")
-    : File::ShareDir::PathClass->dist_dir("App-Magpie");
+our $SHAREDIR = -e path("dist.ini")
+    ? path("share")
+    : path( File::ShareDir->dist_dir("App-Magpie") );
 
 
 1;
@@ -33,13 +30,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Constants - Various constants
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 DESCRIPTION
 

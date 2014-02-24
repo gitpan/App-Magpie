@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package App::Magpie::Action::Recent;
-{
-  $App::Magpie::Action::Recent::VERSION = '2.002';
-}
 # ABSTRACT: recent command implementation
-
+$App::Magpie::Action::Recent::VERSION = '2.003';
 use CPAN::Recent::Uploads;
 use List::AllUtils qw{ apply uniq };
 use MetaCPAN::API;
@@ -79,13 +76,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Magpie::Action::Recent - recent command implementation
 
 =head1 VERSION
 
-version 2.002
+version 2.003
 
 =head1 SYNOPSIS
 
