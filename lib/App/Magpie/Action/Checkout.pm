@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Checkout;
 # ABSTRACT: checkout command implementation
-$App::Magpie::Action::Checkout::VERSION = '2.003';
+$App::Magpie::Action::Checkout::VERSION = '2.004';
 use File::pushd;
 use Moose;
 use Path::Tiny;
@@ -85,7 +85,7 @@ App::Magpie::Action::Checkout - checkout command implementation
 
 =head1 VERSION
 
-version 2.003
+version 2.004
 
 =head1 SYNOPSIS
 

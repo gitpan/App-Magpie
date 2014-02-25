@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::URPM;
 # ABSTRACT: magpie interface to L<URPM>
-$App::Magpie::URPM::VERSION = '2.003';
+$App::Magpie::URPM::VERSION = '2.004';
 use MooseX::Singleton;
 use MooseX::Has::Sugar;
 use URPM;
@@ -70,7 +70,7 @@ App::Magpie::URPM - magpie interface to L<URPM>
 
 =head1 VERSION
 
-version 2.003
+version 2.004
 
 =head1 SYNOPSIS
 

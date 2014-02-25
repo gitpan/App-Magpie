@@ -14,7 +14,7 @@ use warnings;
 
 package magpie;
 # ABSTRACT: Mageia Perl Integration Easy
-$magpie::VERSION = '2.003';
+$magpie::VERSION = '2.004';
 use Find::Lib '../lib';
 use App::Magpie::App;
 
@@ -35,7 +35,7 @@ magpie - Mageia Perl Integration Easy
 
 =head1 VERSION
 
-version 2.003
+version 2.004
 
 =head1 SYNOPSIS
 

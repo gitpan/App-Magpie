@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::WebStatic;
 # ABSTRACT: webstatic command implementation
-$App::Magpie::Action::WebStatic::VERSION = '2.003';
+$App::Magpie::Action::WebStatic::VERSION = '2.004';
 use DateTime;
 use File::Copy;
 use LWP::Simple;
@@ -179,7 +179,7 @@ App::Magpie::Action::WebStatic - webstatic command implementation
 
 =head1 VERSION
 
-version 2.003
+version 2.004
 
 =head1 SYNOPSIS
 

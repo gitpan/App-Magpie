@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::sort;
 # ABSTRACT: sort packages needing a rebuild according to their requires
-$App::Magpie::App::Command::sort::VERSION = '2.003';
+$App::Magpie::App::Command::sort::VERSION = '2.004';
 use App::Magpie::App -command;
 
 
@@ -59,7 +59,7 @@ App::Magpie::App::Command::sort - sort packages needing a rebuild according to t
 
 =head1 VERSION
 
-version 2.003
+version 2.004
 
 =head1 SYNOPSIS
 
