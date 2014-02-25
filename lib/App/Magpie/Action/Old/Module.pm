@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Old::Module;
 # ABSTRACT: module that has a newer version available
-$App::Magpie::Action::Old::Module::VERSION = '2.004';
+$App::Magpie::Action::Old::Module::VERSION = '2.005';
 use File::ShareDir::PathClass;
 use Moose;
 use MooseX::Has::Sugar;
@@ -122,7 +122,7 @@ App::Magpie::Action::Old::Module - module that has a newer version available
 
 =head1 VERSION
 
-version 2.004
+version 2.005
 
 =head1 DESCRIPTION
 

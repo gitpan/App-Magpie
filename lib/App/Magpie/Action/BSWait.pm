@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::BSWait;
 # ABSTRACT: bswait command implementation
-$App::Magpie::Action::BSWait::VERSION = '2.004';
+$App::Magpie::Action::BSWait::VERSION = '2.005';
 use LWP::UserAgent;
 use Moose;
 
@@ -58,7 +58,7 @@ App::Magpie::Action::BSWait - bswait command implementation
 
 =head1 VERSION
 
-version 2.004
+version 2.005
 
 =head1 SYNOPSIS
 

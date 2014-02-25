@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Sort;
 # ABSTRACT: sort command implementation
-$App::Magpie::Action::Sort::VERSION = '2.004';
+$App::Magpie::Action::Sort::VERSION = '2.005';
 use List::AllUtils qw{ part uniq };
 use Moose;
 use Path::Tiny;
@@ -117,7 +117,7 @@ App::Magpie::Action::Sort - sort command implementation
 
 =head1 VERSION
 
-version 2.004
+version 2.005
 
 =head1 SYNOPSIS
 

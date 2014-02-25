@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Old::Set;
 # ABSTRACT: a set of AM::Old::Modules objects
-$App::Magpie::Action::Old::Set::VERSION = '2.004';
+$App::Magpie::Action::Old::Set::VERSION = '2.005';
 use Moose;
 use MooseX::Has::Sugar;
 
@@ -50,7 +50,7 @@ App::Magpie::Action::Old::Set - a set of AM::Old::Modules objects
 
 =head1 VERSION
 
-version 2.004
+version 2.005
 
 =head1 SYNOPSIS
 

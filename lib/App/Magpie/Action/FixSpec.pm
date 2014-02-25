@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::FixSpec;
 # ABSTRACT: fixspec command implementation
-$App::Magpie::Action::FixSpec::VERSION = '2.004';
+$App::Magpie::Action::FixSpec::VERSION = '2.005';
 use Moose;
 use Parse::CPAN::Meta   1.4401; # load_file
 use Path::Tiny;
@@ -42,7 +42,7 @@ sub run {
 
     # extracting tarball
     $self->log_debug( "removing previous BUILD directory" );
-    path( "BUILD" )->remove_tree;
+    path( "BUILD" )->remove_tree( { safe => 0 } );
     $self->log_debug( "extracting tarball" );
     $self->run_command( "bm -lp" ); # first just extract tarball
     my $distdir = path( glob "BUILD/*" );
@@ -74,7 +74,7 @@ sub run {
     }
 
     $self->log_debug( "generating MYMETA" );
-    path( "BUILD" )->remove_tree;
+    path( "BUILD" )->remove_tree( { safe => 0 } );
     $self->run_command( "bm -lc" ); # run -c to make sure MYMETA is generated
     $distdir = path( glob "BUILD/*" );
     my $metafile;
@@ -251,7 +251,7 @@ App::Magpie::Action::FixSpec - fixspec command implementation
 
 =head1 VERSION
 
-version 2.004
+version 2.005
 
 =head1 SYNOPSIS
 

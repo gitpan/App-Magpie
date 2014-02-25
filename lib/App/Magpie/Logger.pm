@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Logger;
 # ABSTRACT: magpie logging facility
-$App::Magpie::Logger::VERSION = '2.004';
+$App::Magpie::Logger::VERSION = '2.005';
 use DateTime;
 use MooseX::Singleton;
 use MooseX::Has::Sugar;
@@ -91,7 +91,7 @@ App::Magpie::Logger - magpie logging facility
 
 =head1 VERSION
 
-version 2.004
+version 2.005
 
 =head1 SYNOPSIS
 

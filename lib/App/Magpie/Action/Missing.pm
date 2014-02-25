@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Missing;
 # ABSTRACT: Missing command implementation
-$App::Magpie::Action::Missing::VERSION = '2.004';
+$App::Magpie::Action::Missing::VERSION = '2.005';
 use Moose;
 use ORDB::CPAN::Mageia;
 use URPM;
@@ -55,7 +55,7 @@ App::Magpie::Action::Missing - Missing command implementation
 
 =head1 VERSION
 
-version 2.004
+version 2.005
 
 =head1 DESCRIPTION
 
