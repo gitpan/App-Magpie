@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Update;
 # ABSTRACT: update command implementation
-$App::Magpie::Action::Update::VERSION = '2.005';
+$App::Magpie::Action::Update::VERSION = '2.006';
 use CPAN::Mini;
 use File::Copy;
 use Moose;
@@ -64,8 +64,15 @@ sub run {
     my $p       = Parse::CPAN::Packages::Fast->new( $modgz->stringify );
     my $dist    = $p->latest_distribution( $distname );
     my $newvers = $dist->version;
-    version->new( $newvers ) > version->new( $distvers )
-        or $self->log_fatal( "no new version found" );
+    if ( version->new( $newvers ) <= version->new( $distvers ) ) {
+        $self->log( "no new version found" );
+        if ( path("refresh")->exists ) {
+            $self->log( "... but a previous 'refresh' script was found, trying to run it" );
+            $self->run_command( "./refresh" );
+            return;
+        }
+        $self->log_fatal( "... and no previous 'refresh' script found, aborting" );
+    }
     $self->log( "new version found: $newvers" );
 
     # copy tarball
@@ -100,6 +107,12 @@ rm \$0
 EOF
     $fh->close;
     chmod 0755, $script;
+
+    # try to install buildrequires
+    if ( ! $ENV{MAGPIE_NO_URPMI_BUILDREQUIRES} ) {
+        $self->log( "installing buildrequires" );
+        $self->run_command( "LC_ALL=C sudo urpmi --wait-lock --buildrequires $specfile" );
+    }
 
     # fix spec file, update buildrequires
     require App::Magpie::Action::FixSpec;
@@ -138,7 +151,7 @@ App::Magpie::Action::Update - update command implementation
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 SYNOPSIS
 
@@ -158,6 +171,11 @@ own to be able to be C<require>-d without loading all other actions.
 
 Try to update the current checked-out package to its latest version, if
 there's one available.
+
+=head1 ENVIRONMENT VARS
+
+F<MAGPIE_NO_URPMI_BUILDREQUIRES> prevents update to try installation of
+the buildrequires.
 
 =head1 AUTHOR
 

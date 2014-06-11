@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Role::RunningCommand;
 # ABSTRACT: sthg that can run an external command
-$App::Magpie::Role::RunningCommand::VERSION = '2.005';
+$App::Magpie::Role::RunningCommand::VERSION = '2.006';
 use Moose::Role;
 use MooseX::Has::Sugar;
 
@@ -31,7 +31,7 @@ sub run_command {
 
     # run the command
     system("$cmd $stderr >&2") == 0
-        or $self->log_fatal( [ "command [$cmd] exited with value %d", $?>>8] );
+        or $self->log_fatal( "command [$cmd] exited with value " . ($?>>8) );
 }
 
 
@@ -50,7 +50,7 @@ App::Magpie::Role::RunningCommand - sthg that can run an external command
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 SYNOPSIS
 

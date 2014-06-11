@@ -12,13 +12,15 @@ use warnings;
 
 package App::Magpie::Action::Old;
 # ABSTRACT: old command implementation
-$App::Magpie::Action::Old::VERSION = '2.005';
+$App::Magpie::Action::Old::VERSION = '2.006';
 use Moose;
+use Path::Tiny;
 
 use App::Magpie::Action::Old::Module;
 use App::Magpie::Action::Old::Set;
 
 with 'App::Magpie::Role::Logging';
+with 'App::Magpie::Role::RunningCommand';
 
 
 
@@ -26,15 +28,47 @@ sub run {
     my ($self) = @_;
     my %category;
 
-    my $cmd = "cpan -O 2>/tmp/cpan-o.stderr";
-    $self->log( "running: $cmd" );
-    my @lines = qx{ $cmd };
+    my $outfile = path( "/tmp/cpan-o.stdout" );
+    if ( $ENV{MAGPIE_REUSE_CPAN_O_OUTPUT} ) {
+        $self->log( "re-using cpan -O output from $outfile" );
+    } else {
+        my $cmd = "cpan -O >$outfile 2>/tmp/cpan-o.stderr";
+        $self->log( "running: $cmd" );
+        system("$cmd") == 0
+            or $self->log_fatal( "command [$cmd] exited with value " . ($?>>8) );
+    }
+    my @lines = $outfile->lines;
+
+    # A file where will we store ignored / rejected lines from cpan -O
+    # output
+    my $rejfh  = path( "/tmp/cpan-o.rej" )->openw;
+    my $noline = 0;
 
     # analyze "cpan -O" output - meaningful lines are of the form:
     # DBIx::Class::Helper::ResultSet::Shortcut::Columns  2.0160  2.0170
     LINE:
     foreach my $line ( @lines ) {
-        next unless $line =~ /^(\S+)\s+(\d\S+)\s+(\d\S+)$/; # re
+        $noline++;
+        if ( $line !~ /
+            ^       # begins with
+            (\S+)   # anything non-whitespace (module name)
+            \s+     # followed by some spaces
+            (       # followed by an alternative
+                v?(?:\d\S+)   # either sthg beginning with a digit (prefixed with optional v)
+                |
+                undef         # or litteral undef
+            )
+            \s+     # followed by some spaces
+            (       # followed by an alternative
+                v?(?:\d\S+)   # either sthg beginning with a digit (prefixed with optional v)
+                |
+                undef         # or litteral undef
+            )
+            $       # and an end of line
+            /x ) {
+            $rejfh->print( "$noline:$line" );
+            next;
+        }
         my ($modname, $oldver, $newver) = ($1,$2,$3);
         my $module = App::Magpie::Action::Old::Module->new(
             name => $modname, oldver => $oldver, newver => $newver );
@@ -63,7 +97,7 @@ App::Magpie::Action::Old - old command implementation
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 SYNOPSIS
 

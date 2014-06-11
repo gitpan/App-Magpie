@@ -6,40 +6,41 @@
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
-use 5.012;
+use 5.020;
 use strict;
 use warnings;
 
 package App::Magpie::Action::Old::Module;
 # ABSTRACT: module that has a newer version available
-$App::Magpie::Action::Old::Module::VERSION = '2.005';
-use File::ShareDir::PathClass;
+$App::Magpie::Action::Old::Module::VERSION = '2.006';
+use List::AllUtils qw{ each_array };
 use Moose;
 use MooseX::Has::Sugar;
 use MooseX::SemiAffordanceAccessor;
 
+use App::Magpie::Constants qw{ $SHAREDIR };
 use App::Magpie::URPM;
 
 
 # -- private vars
 
-my $sharedir = File::ShareDir::PathClass->dist_dir( 'App-Magpie' );
-my %SKIPMOD = do {
-    my $skipfile = $sharedir->file( 'modules.skip' );
-    my @skips = $skipfile->slurp;
-    my %skip;
+my (@SKIP_MOD_NAME, @SKIP_MOD_VERSION);
+{
+    my $skipfile = $SHAREDIR->child( 'modules.skip' );
+    my @skips = $skipfile->lines;
     foreach my $skip ( @skips ) {
         next if $skip =~ /^#/;
         chomp $skip;
         my ($module, $version, $reason) = split /\s*;\s*/, $skip;
-        $skip{$module} = $version;
+        $version ||= ".*"; # no version: all versions are skipped
+        push @SKIP_MOD_NAME,    qr/^$module$/;
+        push @SKIP_MOD_VERSION, qr/^$version$/;
     }
-    %skip;
-};
+}
 
 my %SKIPPKG = do {
-    my $skipfile = $sharedir->file( 'packages.skip' );
-    my @skips = $skipfile->slurp;
+    my $skipfile = $SHAREDIR->child( 'packages.skip' );
+    my @skips = $skipfile->lines;
     my %skip;
     foreach my $skip ( @skips ) {
         next if $skip =~ /^#/;
@@ -83,10 +84,7 @@ sub category {
     my @pkgs   = $self->packages;
     my $iscore = $self->is_core;
 
-    if ( exists $SKIPMOD{ $self->name } ) {
-        return "ignored" if $SKIPMOD{ $self->name } eq "";
-        return "ignored" if $self->newver eq $SKIPMOD{ $self->name };
-    }
+    return "ignored" if $self->is_ignored;
 
     if ( $iscore ) {
         return "core"       if scalar(@pkgs) == 0;
@@ -100,10 +98,25 @@ sub category {
     return "strange" if scalar(@pkgs) >= 2;
     # scalar(@pkgs) == 1;
     return "ignored"    if exists $SKIPPKG{ $pkgs[0]->name };
-    return "null"       if $self->oldver == 0 || $self->newver == 0;
-    return "nodiff"     if $self->oldver == $self->newver; # cpan can be confused
+    return "null_old"   if $self->oldver eq "0" || $self->oldver eq "undef";
+    return "null_new"   if $self->newver eq "0" || $self->newver eq "undef";
+    return "nodiff"     if $self->oldver eq $self->newver; # cpan can be confused
     return "unparsable" if $self->oldver eq "Unparsable";
     return "normal";
+}
+
+
+
+sub is_ignored {
+    my $self = shift;
+
+    # check if module is ignored, regex comparison
+    my $it =  each_array @SKIP_MOD_NAME, @SKIP_MOD_VERSION;
+    while ( my ($mod, $ver) = $it->() ) {
+        return 1 if $self->name =~ $mod && $self->newver =~ $ver;
+    }
+
+    return 0;
 }
 
 
@@ -122,7 +135,7 @@ App::Magpie::Action::Old::Module - module that has a newer version available
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 DESCRIPTION
 
@@ -180,6 +193,14 @@ Return the module category:
 =item * C<unparsable> - current version unparsable
 
 =back
+
+=head2 is_ignored
+
+    my $bool = $module->is_ignored;
+
+Return true if C<$module> is ignored due to its presence in
+F<SHAREDIR/modules.skip>. Note that it will not match against
+F<SHAREDIR/packages.skip>.
 
 =head1 AUTHOR
 

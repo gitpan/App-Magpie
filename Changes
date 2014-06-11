@@ -1,5 +1,18 @@
 Changelog for App-Magpie
 
+2.006     2014-06-11 13:22:41+02:00 Europe/Paris
+ - logger: log correctly when error in external command 
+ - old: storing "cpan -O" output
+ - old: possibility to reuse previous "cpan -O" output
+ - old: restoring parsing capabilities with new cpan precision output
+ - old: storing rejected lines from "cpan -O" output
+ - old: quieting warnings
+ - old: displaying number of packages (instead of modules) per category
+ - old: modules.skip now treated as regexes
+ - recent: using MetaCPAN::Client (::API is deprecated, gh#2)
+ - update: trying to run './refresh' if existing & no new version
+ - update: trying to install buildrequires (unless MAGPIE_NO_URPMI_BUILDREQUIRES)
+
 2.005     2014-02-25 13:58:34+01:00 Europe/Paris
  - forcing directory removal with Path::Tiny
 

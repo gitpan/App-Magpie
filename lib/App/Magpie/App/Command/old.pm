@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::old;
 # ABSTRACT: report installed perl modules with new version available 
-$App::Magpie::App::Command::old::VERSION = '2.005';
+$App::Magpie::App::Command::old::VERSION = '2.006';
 use Encode;
 use Text::Padding;
 
@@ -51,7 +51,13 @@ sub execute {
         }
 
         my $label = $set->name;
-        say "** $label packages: " . $set->nb_modules . " modules";
+        my $details;
+        if ( $label eq "core" || $label eq "orphan" || $label eq "strange" ) {
+            $details = $set->nb_modules . " modules";
+        } else {
+            $details = $set->nb_packages . " packages (" . $set->nb_modules . " modules)";
+        }
+        say "** $label packages: $details";
         say '';
 
         my %seen;
@@ -112,7 +118,7 @@ App::Magpie::App::Command::old - report installed perl modules with new version 
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 SYNOPSIS
 

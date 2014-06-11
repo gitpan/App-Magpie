@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::recent;
 # ABSTRACT: Recent uploads on PAUSE not available in Mageia
-$App::Magpie::App::Command::recent::VERSION = '2.005';
+$App::Magpie::App::Command::recent::VERSION = '2.006';
 use App::Magpie::App -command;
 
 
@@ -52,7 +52,7 @@ App::Magpie::App::Command::recent - Recent uploads on PAUSE not available in Mag
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 DESCRIPTION
 

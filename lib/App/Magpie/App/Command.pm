@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command;
 # ABSTRACT: base class for sub-commands
-$App::Magpie::App::Command::VERSION = '2.005';
+$App::Magpie::App::Command::VERSION = '2.006';
 use App::Cmd::Setup -command;
 use Moose;
 use MooseX::Has::Sugar;
@@ -68,7 +68,7 @@ App::Magpie::App::Command - base class for sub-commands
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 DESCRIPTION
 

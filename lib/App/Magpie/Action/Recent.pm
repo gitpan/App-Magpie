@@ -12,10 +12,10 @@ use warnings;
 
 package App::Magpie::Action::Recent;
 # ABSTRACT: recent command implementation
-$App::Magpie::Action::Recent::VERSION = '2.005';
+$App::Magpie::Action::Recent::VERSION = '2.006';
 use CPAN::Recent::Uploads;
 use List::AllUtils qw{ apply uniq };
-use MetaCPAN::API;
+use MetaCPAN::Client;
 use Moose;
 
 use App::Magpie::URPM;
@@ -50,7 +50,7 @@ sub run {
     # we need to check whether our wild transformation really points to
     # an existing perl module on cpan.
     $self->log( "validating modules" );
-    my $mcpan = MetaCPAN::API->new;
+    my $mcpan = MetaCPAN::Client->new;
     my $nbvalid;
     foreach my $module ( sort @nomageia ) {
         my $result;
@@ -84,7 +84,7 @@ App::Magpie::Action::Recent - recent command implementation
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 SYNOPSIS
 

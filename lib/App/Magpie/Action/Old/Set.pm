@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Old::Set;
 # ABSTRACT: a set of AM::Old::Modules objects
-$App::Magpie::Action::Old::Set::VERSION = '2.005';
+$App::Magpie::Action::Old::Set::VERSION = '2.006';
 use Moose;
 use MooseX::Has::Sugar;
 
@@ -35,6 +35,19 @@ has _modules => (
     },
 );
 
+#--
+
+
+sub nb_packages {
+    my $self = shift;
+    my %seen;
+    @seen{
+        map { $_->packages->[0] }
+        $self->all_modules
+    }++;
+    return scalar keys %seen;
+}
+
 
 1;
 
@@ -50,7 +63,7 @@ App::Magpie::Action::Old::Set - a set of AM::Old::Modules objects
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 SYNOPSIS
 
@@ -82,6 +95,12 @@ Add C<$module> to the C<$set>.
     my $nb = $set->nb_modules;
 
 Return the number of modules the set is holding.
+
+=head2 nb_packages
+
+    my $nb = $set->nb_packages;
+
+Return the nimber of Mageia packages the set is holding.
 
 =head1 AUTHOR
 

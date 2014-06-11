@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Logger;
 # ABSTRACT: magpie logging facility
-$App::Magpie::Logger::VERSION = '2.005';
+$App::Magpie::Logger::VERSION = '2.006';
 use DateTime;
 use MooseX::Singleton;
 use MooseX::Has::Sugar;
@@ -47,7 +47,7 @@ sub _build_log_level {
 sub log {
     my $self = shift;
     return if $self->log_level < 1;
-    print STDERR BLUE;
+    print STDERR YELLOW;
     $self->_log(@_);
     print STDERR RESET;
 }
@@ -55,7 +55,9 @@ sub log {
 sub log_debug {
     my $self = shift;
     return if $self->log_level < 2;
+    print STDERR BLUE;
     $self->_log(@_);
+    print STDERR RESET;
 }
 
 sub log_fatal {
@@ -91,7 +93,7 @@ App::Magpie::Logger - magpie logging facility
 
 =head1 VERSION
 
-version 2.005
+version 2.006
 
 =head1 SYNOPSIS
 
