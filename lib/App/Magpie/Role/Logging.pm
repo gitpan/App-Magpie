@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Role::Logging;
 # ABSTRACT: sthg that can log
-$App::Magpie::Role::Logging::VERSION = '2.006';
+$App::Magpie::Role::Logging::VERSION = '2.007';
 use Moose::Role;
 use MooseX::Has::Sugar;
 
@@ -44,7 +44,7 @@ App::Magpie::Role::Logging - sthg that can log
 
 =head1 VERSION
 
-version 2.006
+version 2.007
 
 =head1 SYNOPSIS
 

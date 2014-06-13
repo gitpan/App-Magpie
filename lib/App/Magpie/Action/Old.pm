@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Old;
 # ABSTRACT: old command implementation
-$App::Magpie::Action::Old::VERSION = '2.006';
+$App::Magpie::Action::Old::VERSION = '2.007';
 use Moose;
 use Path::Tiny;
 
@@ -97,7 +97,7 @@ App::Magpie::Action::Old - old command implementation
 
 =head1 VERSION
 
-version 2.006
+version 2.007
 
 =head1 SYNOPSIS
 

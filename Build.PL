@@ -18,7 +18,7 @@ my %module_build_args = (
     "Jerome Quelin <jquelin\@gmail.com>"
   ],
   "dist_name" => "App-Magpie",
-  "dist_version" => "2.006",
+  "dist_version" => "2.007",
   "license" => "perl",
   "module_name" => "App::Magpie",
   "recommends" => {},

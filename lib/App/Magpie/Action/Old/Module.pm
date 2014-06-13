@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Old::Module;
 # ABSTRACT: module that has a newer version available
-$App::Magpie::Action::Old::Module::VERSION = '2.006';
+$App::Magpie::Action::Old::Module::VERSION = '2.007';
 use List::AllUtils qw{ each_array };
 use Moose;
 use MooseX::Has::Sugar;
@@ -135,7 +135,7 @@ App::Magpie::Action::Old::Module - module that has a newer version available
 
 =head1 VERSION
 
-version 2.006
+version 2.007
 
 =head1 DESCRIPTION
 

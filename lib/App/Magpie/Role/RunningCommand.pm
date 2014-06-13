@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Role::RunningCommand;
 # ABSTRACT: sthg that can run an external command
-$App::Magpie::Role::RunningCommand::VERSION = '2.006';
+$App::Magpie::Role::RunningCommand::VERSION = '2.007';
 use Moose::Role;
 use MooseX::Has::Sugar;
 
@@ -50,7 +50,7 @@ App::Magpie::Role::RunningCommand - sthg that can run an external command
 
 =head1 VERSION
 
-version 2.006
+version 2.007
 
 =head1 SYNOPSIS
 

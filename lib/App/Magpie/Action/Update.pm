@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Update;
 # ABSTRACT: update command implementation
-$App::Magpie::Action::Update::VERSION = '2.006';
+$App::Magpie::Action::Update::VERSION = '2.007';
 use CPAN::Mini;
 use File::Copy;
 use Moose;
@@ -151,7 +151,7 @@ App::Magpie::Action::Update - update command implementation
 
 =head1 VERSION
 
-version 2.006
+version 2.007
 
 =head1 SYNOPSIS
 

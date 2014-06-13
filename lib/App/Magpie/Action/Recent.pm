@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Recent;
 # ABSTRACT: recent command implementation
-$App::Magpie::Action::Recent::VERSION = '2.006';
+$App::Magpie::Action::Recent::VERSION = '2.007';
 use CPAN::Recent::Uploads;
 use List::AllUtils qw{ apply uniq };
 use MetaCPAN::Client;
@@ -84,7 +84,7 @@ App::Magpie::Action::Recent - recent command implementation
 
 =head1 VERSION
 
-version 2.006
+version 2.007
 
 =head1 SYNOPSIS
 

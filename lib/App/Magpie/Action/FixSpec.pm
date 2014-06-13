@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::FixSpec;
 # ABSTRACT: fixspec command implementation
-$App::Magpie::Action::FixSpec::VERSION = '2.006';
+$App::Magpie::Action::FixSpec::VERSION = '2.007';
 use Moose;
 use Parse::CPAN::Meta   1.4401; # load_file
 use Path::Tiny;
@@ -251,7 +251,7 @@ App::Magpie::Action::FixSpec - fixspec command implementation
 
 =head1 VERSION
 
-version 2.006
+version 2.007
 
 =head1 SYNOPSIS
 
