@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::dwim;
 # ABSTRACT: automagically update Mageia packages
-$App::Magpie::App::Command::dwim::VERSION = '2.007';
+$App::Magpie::App::Command::dwim::VERSION = '2.008';
 use App::Magpie::App -command;
 
 
@@ -53,7 +53,7 @@ App::Magpie::App::Command::dwim - automagically update Mageia packages
 
 =head1 VERSION
 
-version 2.007
+version 2.008
 
 =head1 SYNOPSIS
 

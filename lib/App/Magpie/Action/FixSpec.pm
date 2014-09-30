@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::FixSpec;
 # ABSTRACT: fixspec command implementation
-$App::Magpie::Action::FixSpec::VERSION = '2.007';
+$App::Magpie::Action::FixSpec::VERSION = '2.008';
 use Moose;
 use Parse::CPAN::Meta   1.4401; # load_file
 use Path::Tiny;
@@ -85,6 +85,9 @@ sub run {
     }
 
     # cleaning spec file
+    $self->log_debug( "adding %{?perl_default_filter}" );
+    $spec =~ s/^Name:/%{?perl_default_filter}\n\nName:/msi;
+
     $self->log_debug( "removing mandriva macros" );
     $spec =~ s/^%if %{mdkversion}.*?^%endif$//msi;
 
@@ -251,7 +254,7 @@ App::Magpie::Action::FixSpec - fixspec command implementation
 
 =head1 VERSION
 
-version 2.007
+version 2.008
 
 =head1 SYNOPSIS
 

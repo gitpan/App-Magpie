@@ -2,7 +2,7 @@ use 5.006;
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::Compile 2.042
+# this test was generated with Dist::Zilla::Plugin::Test::Compile 2.046
 
 use Test::More  tests => 34 + ($ENV{AUTHOR_TESTING} ? 1 : 0);
 
@@ -104,6 +104,6 @@ foreach my $file (@scripts)
 
 
 
-is(scalar(@warnings), 0, 'no warnings found') if $ENV{AUTHOR_TESTING};
+is(scalar(@warnings), 0, 'no warnings found') or diag 'got warnings: ', explain \@warnings if $ENV{AUTHOR_TESTING};
 
 

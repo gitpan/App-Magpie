@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Constants;
 # ABSTRACT: Various constants
-$App::Magpie::Constants::VERSION = '2.007';
+$App::Magpie::Constants::VERSION = '2.008';
 use Exporter::Lite;
 use File::ShareDir qw{ dist_dir };
 use Path::Tiny;
@@ -38,7 +38,7 @@ App::Magpie::Constants - Various constants
 
 =head1 VERSION
 
-version 2.007
+version 2.008
 
 =head1 DESCRIPTION
 
