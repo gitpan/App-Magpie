@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Config;
 # ABSTRACT: magpie configuration storage & retrieval
-$App::Magpie::Config::VERSION = '2.008';
+$App::Magpie::Config::VERSION = '2.009';
 use Config::Tiny;
 use File::HomeDir::PathClass;
 use MooseX::Singleton;
@@ -69,7 +69,7 @@ App::Magpie::Config - magpie configuration storage & retrieval
 
 =head1 VERSION
 
-version 2.008
+version 2.009
 
 =head1 SYNOPSIS
 

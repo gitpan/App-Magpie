@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App;
 # ABSTRACT: magpie's App::Cmd
-$App::Magpie::App::VERSION = '2.008';
+$App::Magpie::App::VERSION = '2.009';
 use App::Cmd::Setup -app;
 
 sub allow_any_unambiguous_abbrev { 1 }
@@ -31,7 +31,7 @@ App::Magpie::App - magpie's App::Cmd
 
 =head1 VERSION
 
-version 2.008
+version 2.009
 
 =head1 DESCRIPTION
 

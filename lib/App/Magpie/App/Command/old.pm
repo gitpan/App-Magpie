@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::App::Command::old;
 # ABSTRACT: report installed perl modules with new version available 
-$App::Magpie::App::Command::old::VERSION = '2.008';
+$App::Magpie::App::Command::old::VERSION = '2.009';
 use Encode;
 use Text::Padding;
 
@@ -118,7 +118,7 @@ App::Magpie::App::Command::old - report installed perl modules with new version 
 
 =head1 VERSION
 
-version 2.008
+version 2.009
 
 =head1 SYNOPSIS
 

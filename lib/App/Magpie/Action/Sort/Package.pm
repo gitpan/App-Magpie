@@ -12,7 +12,7 @@ use warnings;
 
 package App::Magpie::Action::Sort::Package;
 # ABSTRACT: package in need of a rebuild
-$App::Magpie::Action::Sort::Package::VERSION = '2.008';
+$App::Magpie::Action::Sort::Package::VERSION = '2.009';
 use Moose;
 use MooseX::Has::Sugar;
 use MooseX::SemiAffordanceAccessor;
@@ -80,7 +80,7 @@ App::Magpie::Action::Sort::Package - package in need of a rebuild
 
 =head1 VERSION
 
-version 2.008
+version 2.009
 
 =head1 DESCRIPTION
 
